@@ -25,18 +25,16 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 #. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-|lab-4-3|
-
 #. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
 
-Add target host information under the action:
+Add target host information under the action::
 
     "targetHost": "10.1.1.4",
     "targetPort": 443,
     "targetUsername": "admin",
     "targetPassphrase": "admin",
 
-Add the target information before the tenant application:
+Add the target information before the tenant application::
 
     "target": {
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
@@ -46,13 +44,17 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses from 10.1.10.1
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Now, the validaiton is valid, post the declaration into Postman.
+#. Now, the validaiton is valid, use Postman to create application by sending a declaration to
 
-https://10.1.1.4/mgmt/shared/appsvcs/declare
+    POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
 .. note:: https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
           his will give you an ID which you can query in the task section 
           https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
+
+To ensure that the AS3 is calling the BIG-IQ app service deployer check the latest running task for status or errors:
+
+    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
 #. Logon on BIG-IQ, go to Application tab and check the application is displayed and analytics are showing.
@@ -67,7 +69,7 @@ Repeat Task 1 with `Example 2 HTTPS application`_ from AS3 cloud docs.
 
 .. _Example 2 HTTPS application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html#example-2-https-application
 
-Update the WAF policy with the default policy delivered with BIG-IQ:
+Update the WAF policy with the default policy delivered with BIG-IQ::
 
  "policyWAF": {
           "bigip": "/Common/templates-default"
