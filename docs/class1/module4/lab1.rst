@@ -1,63 +1,85 @@
 Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 ---------------------------------------------------
 
-
-While much of the focus on Tower has been using the GUI, this has primarily
-been to familiarize users with Ansible Tower and its object model. The Job
-Templates that are created within Tower all have the ability to be exposed with
-a REST API. In this lab we will call the same playbook template
-``Tenant1_Pool_Add_Member`` as we did in the web GUI. This method makes it much
-easier to work Tower into a CI/CD toolset.
-
-
-Task 1 - Call Tenant1_Pool_Add_Member with REST API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. NOTE:: This lab work will be performed from
-   ``Lab 3.4- Ansible Tower and REST`` folder in the
-   Postman Collection
-
-   |lab-4-1|
+Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
 #. Using Postman select ``Step 1: Retrieve Authentication Token``. Review the
    **Request** JSON :guilabel:`Body`. The JSON body is used to get the Auth
-   token from Tower. Press Send.
+   token from BIG-IQ. Press Send.
 
-   |lab-4-2|
+|lab-4-1|
 
-#. Select ``Step 2: Get Tenant1_Pool_add_member ID``. This is a GET Request
-   to retrieve the ID of the Template that we want to call for adding a Member.
-   Press Send.
 
-   |lab-4-3|
+Task 1 - HTTP Application Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Select ``Step 3: Run Tenant1_Pool_Add_Member``. Review the JSON Body of this
-   request. The variables being sent are the same ones that the ``Survey``
-   would request in the GUI. Press Send.
+#. Select the `Example 1 Simple HTTP application`_ from AS3 cloud docs and past it in the AS3 public validator.
 
-   |lab-4-4|
+.. _Example 1 Simple HTTP application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html
 
-#. Open a Chrome window/tab to the Tower GUI at ``https://10.1.1.12`` and login
-   with ``admin/admin`` credentials. Navigate to :menuselection:`Jobs` in
-   the top Menu. Select the job that completed on the top of the list. The ID
-   may vary, but the name will be ``Tenant1_Pool_Add_Member``.
+To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://localhost:5000
 
-   |lab-4-5|
+#. Click on ``Format JSON`` on the top left.
 
-#. Once the Job template is complete you should see the Status as ``Successful``.
-   At this point you have add a Pool member to the pool on the BIG-IP using the 
-   REST API in Ansible Tower.
+|lab-4-2|
 
-   |lab-4-6|
+#. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-.. NOTE:: For more information about ansible tower please reference the following
-   start point.
-   https://www.ansible.com/products/tower
+|lab-4-3|
+
+#. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
+
+Add target host information under the action:
+
+    "targetHost": "10.1.1.4",
+    "targetPort": 443,
+    "targetUsername": "admin",
+    "targetPassphrase": "admin",
+
+Add the target information before the tenant application:
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
+
+Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100 to 10.1.10.104.
+
+#. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+
+#. Now, the validaiton is valid, post the declaration into Postman.
+
+#. Logon on BIG-IQ, go to Application tab and check the application is displayed and analytics are showing.
+
+|lab-4-4|
+
+
+Task 2 - HTTPS Offload
+~~~~~~~~~~~~~~~~~~~~~~
+
+Repeat Task 1 with `Example 2 HTTPS application`_ from AS3 cloud docs.
+
+.. _Example 2 HTTPS application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html#example-2-https-application
+
+Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.100 to 10.1.10.104.
+
+Task 3 - Web Application Firewall (ASM)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Repeat Task 1 with `1 Virtual service referencing an existing security policy`_ from AS3 cloud docs.
+
+.. _1 Virtual service referencing an existing security policy: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/declarations/security-related.html#virtual-service-referencing-an-existing-security-policy
+
+Modify the Virtual Address to 10.1.20.102 and the serverAddresses to 10.1.10.100 to 10.1.10.104.
+
+
+Task 4 - Generic Services
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Modify the Virtual Address to 10.1.20.103, port 1000 and the serverAddresses to 10.1.10.100 to 10.1.10.104.
 
 
 .. |lab-4-1| image:: images/lab-4-1.png
 .. |lab-4-2| image:: images/lab-4-2.png
 .. |lab-4-3| image:: images/lab-4-3.png
 .. |lab-4-4| image:: images/lab-4-4.png
-.. |lab-4-5| image:: images/lab-4-5.png
-.. |lab-4-6| image:: images/lab-4-6.png
