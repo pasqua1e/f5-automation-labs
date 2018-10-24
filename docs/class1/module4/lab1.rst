@@ -6,7 +6,7 @@ Using the declarative AS3 API, let's send the following BIG-IP configuration thr
 #. Using Postman select ``BIG-IQ Token`` available in the Collections. The JSON body is used to get the Auth
    token from BIG-IQ. Press Send. Then select  the token value, click right, Set Globals, _f5_token.
 
-|lab-4-1|
+|lab-1-1|
 
 
 Task 1 - HTTP Application Service
@@ -20,7 +20,7 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 #. Click on ``Format JSON`` on the top left.
 
-|lab-4-2|
+|lab-1-2|
 
 #. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
@@ -30,8 +30,8 @@ Add target host information under the action::
 
     "targetHost": "10.1.1.4",
     "targetPort": 443,
-    "targetUsername": "admin",
-    "targetPassphrase": "admin",
+    "targetUsername": "olivia",
+    "targetPassphrase": "olivia",
 
 Add the target information before the tenant application::
 
@@ -58,7 +58,7 @@ To ensure that the AS3 is calling the BIG-IQ app service deployer check the late
 
 #. Logon on BIG-IQ, go to Application tab and check the application is displayed and analytics are showing.
 
-|lab-4-4|
+|lab-1-3|
 
 
 Task 2 - HTTPS Offload
@@ -98,7 +98,9 @@ Task 4 - Generic Services
 
 Modify the Virtual Address to 10.1.20.103, port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
-.. |lab-4-1| image:: images/lab-4-1.png
-.. |lab-4-2| image:: images/lab-4-2.png
-.. |lab-4-3| image:: images/lab-4-3.png
-.. |lab-4-4| image:: images/lab-4-4.png
+.. |lab-1-1| image:: images/lab-1-1.png
+   :scale: 80%
+.. |lab-1-2| image:: images/lab-1-2.png
+   :scale: 80%
+.. |lab-1-3| image:: images/lab-1-3.png
+   :scale: 80%

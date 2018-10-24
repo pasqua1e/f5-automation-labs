@@ -213,12 +213,11 @@ template. The table below represents what each template contains.
       - HTTPS Offload, Web Application Firewall Protection and Load Balancing
         to a Single Pool
 
-.. |lab-2-1| image:: images/lab-2-1.png
-.. |lab-2-2| image:: images/lab-2-2.png
-.. |lab-2-3| image:: images/lab-2-3.png
+.. |lab-3-1| image:: images/lab-3-1.png
    :scale: 80%
-.. |lab-2-4| image:: images/lab-2-4.png
-.. |lab-2-5| image:: images/lab-2-5.png
-.. |lab-2-6| image:: images/lab-2-6.png
+.. |lab-3-2| image:: images/lab-3-2.png
    :scale: 80%
-.. |lab-2-7| image:: images/lab-2-7.png
+.. |lab-3-3| image:: images/lab-3-3.png
+   :scale: 80%
+.. |lab-3-4| image:: images/lab-3-4.png
+   :scale: 80%
