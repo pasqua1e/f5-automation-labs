@@ -3,9 +3,8 @@ Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
-#. Using Postman select ``Step 1: Retrieve Authentication Token``. Review the
-   **Request** JSON :guilabel:`Body`. The JSON body is used to get the Auth
-   token from BIG-IQ. Press Send.
+#. Using Postman select ``BIG-IQ Token`` available in the Collections. The JSON body is used to get the Auth
+   token from BIG-IQ. Press Send. Then select  the token value, click right, Set Globals, _f5_token.
 
 |lab-4-1|
 
@@ -69,11 +68,6 @@ Repeat Task 1 with `Example 2 HTTPS application`_ from AS3 cloud docs.
 
 .. _Example 2 HTTPS application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html#example-2-https-application
 
-Update the WAF policy with the default policy delivered with BIG-IQ::
-
- "policyWAF": {
-          "bigip": "/Common/templates-default"
-        }
 
 Modify the Virtual Address to 10.1.20.101 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
@@ -83,6 +77,12 @@ Task 3 - Web Application Firewall
 Repeat Task 1 with `1 Virtual service referencing an existing security policy`_ from AS3 cloud docs.
 
 .. _1 Virtual service referencing an existing security policy: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/declarations/security-related.html#virtual-service-referencing-an-existing-security-policy
+
+Update the WAF policy with the default policy delivered with BIG-IQ::
+
+ "policyWAF": {
+          "bigip": "/Common/templates-default"
+        }
 
 Modify the Virtual Address to 10.1.20.102 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
