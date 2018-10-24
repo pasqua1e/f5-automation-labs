@@ -3,8 +3,8 @@ Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
-#. Using Postman select ``BIG-IQ Token`` available in the Collections. The JSON body is used to get the Auth
-   token from BIG-IQ. Press Send. Then select  the token value, click right, Set Globals, _f5_token.
+#. Using Postman select ``BIG-IQ Token`` available in the Collections.
+Press Send. Then, select the token value, click right, Set Globals, _f5_token.
 
 |lab-1-1|
 
@@ -43,7 +43,7 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses from 10.1.10.1
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Now, the validaiton is valid, use Postman to create application by sending a declaration to
+#. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
     POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
@@ -51,7 +51,7 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses from 10.1.10.1
           his will give you an ID which you can query in the task section 
           https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
 
-To ensure that the AS3 is calling the BIG-IQ app service deployer check the latest running task for status or errors:
+Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 

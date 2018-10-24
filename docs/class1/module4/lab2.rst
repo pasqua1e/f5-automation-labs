@@ -1,160 +1,60 @@
 Lab 4.2: Modify AS3 Apps using BIG-IQ 6.1
 -----------------------------------------
 
-At this point we have deployed full Applications with Tower and AS3 but have not
-modified an application after it was deployed. In this Lab we will focus on
-Adding, Removing, and Replacing Pool Members using **AS3 PATCH** through Tower.
-We will also demonstrate updating SSL Certificates on an existing Virtual.
-
-.. NOTE:: Ensure that you ran the :guilabel:`Tenant1_Deploy_Config`
-   Template again with the ``f5-https-offload-app`` option as indicated at
-   the end of the last Lab.
+Using the declarative AS3 API, let's modfiy the HTTP application created during the previous **lab 1 - Task 1** through BIG-IQ:
 
 
-Task 1 - Adding a Pool Member using Tower
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Task 5 - Add HTTPS to existing HTTP AS3 Declaration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Just like our Deployment Job Templates, modification Job Templates also
-utlilize both :guilabel:`Playbooks` and :guilabel:`Jinja2` templates.
+.. note:: Start with the previous AS3 Declaration from **lab 1 - Task 1**
 
-#. Open the Ansible Tower GUI in Chrome by navigating to ``https://10.1.1.12``
-   and login using ``T1-ops-user``/``default`` credentials.
+#. Select the `4 HTTP and HTTPS virtual services in one declaration`_ from AS3 cloud docs and add application **A2** to the declaration using the AS3 public validator.
 
-#. Navigate to the :guilabel:`Templates` section in the Web UI. Notice the
-   difference in Templates available to the :guilabel:`Operations User`. This
-   is where breaking up roles to match your orginization can really add value
-   when using Tower. There can be Templates designated for Security,
-   Network Admins, App Owners, etc.
+.. _4 HTTP and HTTPS virtual services in one declaration: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/declarations/http-https.html#http-and-https-virtual-services-in-one-declaration
 
-   |lab-3-1|
+To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://localhost:5000 (or use UDP public IP).
 
-#. Select the ``Rocket-Ship Icon`` next to the Template titled
-   ``Tenant1_Pool_Add_Member``
+#. Click on ``Format JSON`` on the top left.
 
-#. A Survey will appear asking you to specify the following fields and press
-   :guilabel:`LAUNCH`:
+#. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-   - :guilabel:`Application`: This is the AS3 Application Name: Enter ``A2``
+#. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
 
-   - :guilabel:`Pool Name`: Name of the App Pool: Enter ``web_pool``
+Add target host information under the action::
 
-   - :guilabel:`New Member`: IP of new Pool Member: Enter ``10.1.10.125``
+    "targetHost": "10.1.1.4",
+    "targetPort": 443,
+    "targetUsername": "olivia",
+    "targetPassphrase": "olivia",
 
-   |lab-3-2|
+Add the target information before the tenant application::
 
-#. Once you see the ``Status Success`` message on the Job Output open a Chrome
-   window/tab to the BIG-IP A GUI at ``https://10.1.1.10`` and login with
-   ``admin/admin`` credentials. Navigate to
-   :menuselection:`Local Traffic --> Pools`. Make sure to select ``Tenant1``
-   Partition in the top right hand corner to view your AS3 Tenant. You should
-   see ``web_pool`` listed with ``3`` members in the pool.
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
-   |lab-3-3|
+Modify the Virtual Address to 10.1.20.104 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
-#. Click on the :guilabel:`3` pool members to see the one we just added.
+#. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-   |lab-3-4|
+|lab-2-1|
 
+#. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
-Task 2 - Removing a Pool Member using Tower
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
-#. Navigate to the :guilabel:`Templates` section in the Web UI and Select the
-   ``Rocket-Ship Icon`` next to the Template titled ``Tenant1_Pool_Delete_Member``.
+.. note:: https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+          his will give you an ID which you can query in the task section 
+          https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
 
-   |lab-3-5|
+Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
-#. A Survey will appear asking you to specify the following fields and press
-   :guilabel:`LAUNCH`:
-
-   - :guilabel:`Application`: This is the AS3 Application Name: Enter ``A2``
-
-   - :guilabel:`Pool Name`: Name of the App Pool: Enter ``web_pool``
-
-   - :guilabel:`Index of Member`: IP of new Pool Member: Enter ``2``
-
-   |lab-3-6|
-
-#. Once you see the ``Status Success`` message on the Job Output open a Chrome
-   window/tab to the BIG-IP A GUI at ``https://10.1.1.10`` and login with
-   ``admin/admin`` credentials. Navigate to
-   :menuselection:`Local Traffic --> Pools`. Make sure to select ``Tenant1``
-   Partition in the top right hand corner to view your AS3 Tenant. You should
-   see ``web_pool`` listed with ``2`` members again in the pool.
-
-#. You have now successfully Added and Removed ``10.1.10.125`` from the
-   AS3 Application using Ansible Tower.
+    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
-Task 3 - Replacing all Pool Members
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This task is similar to the ``Replace-All-With`` tmsh feature. The template will
-take ``extra-vars`` as input and will replace all current members in the pool
-with the ones that are provided during the Template execution.
-
-#. Navigate to the :guilabel:`Templates` section in the Web UI and Select the
-   ``Rocket-Ship Icon`` next to the Template titled ``Tenant1_Update_All_Members``.
-
-   |lab-3-7|
-
-#. Before the Survey launches this time, Tower will ask you to fill in
-   ``extra-vars``. This ``vars`` will represent how you would like the pool to
-   be after the Template pushes. You can add or remove members from the blank
-   as long as the syntax is followed. In this example we are Replacing
-   the existing members with the same IP but now port 8001 instead of 80.
+#. Logon on BIG-IQ, go to Application tab and check the application is displayed and analytics are showing.
 
 
-   |lab-3-8|
-
-#. Select ``NEXT`` and the Survey will appear asking you to specify the
-   following fields and then to press :guilabel:`LAUNCH`
-
-   - :guilabel:`Application`: This is the AS3 Application Name: Enter ``A2``
-
-   - :guilabel:`Pool Name`: Name of the App Pool: Enter ``web_pool``
-
-   |lab-3-9|
-
-#. Once you see the ``Status Success`` message on the Job Output open a Chrome
-   window/tab to the BIG-IP A GUI at ``https://10.1.1.10`` and login with
-   ``admin/admin`` credentials. Navigate to
-   :menuselection:`Local Traffic --> Pools`. Make sure to select ``Tenant1``
-   Partition in the top right hand corner to view your AS3 Tenant. You should
-   see ``web_pool`` listed with ``2`` members again but with the ports as 8001.
-
-   |lab-3-10|
-
-
-
-Task 4 - Updating the SSL CRT/KEY on a VIP
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Following the same process as the last three tasks, login to Tower and run the
-   :guilabel:`Tenant1_Update_CRT_KEY` Template. For this example we have
-   prefilled the CRT and KEY into the Survey to avoid mistakes when copying the
-   files. You must still fill in the ``Application`` name as ``A2``.
-
-   |lab-3-11|
-
-#. After the State shows as ``Successful`` you can retrieve the updated AS3
-   declaration by running the ``Tenant1_View_Config``. The output will shows
-   the new certificate in the JSON output of the Job Page.
-
-   |lab-3-12|
-
-.. |lab-3-1| image:: images/lab-3-1.png
-.. |lab-3-2| image:: images/lab-3-2.png
+.. |lab-2-1| image:: images/lab-2-1.png
    :scale: 80%
-.. |lab-3-3| image:: images/lab-3-3.png
-   :scale: 80%
-.. |lab-3-4| image:: images/lab-3-4.png
-.. |lab-3-5| image:: images/lab-3-5.png
-   :scale: 80%
-.. |lab-3-6| image:: images/lab-3-6.png
-.. |lab-3-7| image:: images/lab-3-7.png
-.. |lab-3-8| image:: images/lab-3-8.png
-.. |lab-3-9| image:: images/lab-3-9.png
-.. |lab-3-10| image:: images/lab-3-10.png
-.. |lab-3-11| image:: images/lab-3-11.png
-.. |lab-3-12| image:: images/lab-3-12.png
