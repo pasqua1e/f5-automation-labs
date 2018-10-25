@@ -32,7 +32,7 @@ Module 4: Integration of AS3 with BIG-IQ 6.1
 Overview
 --------
 
-In this module we will explore how to use utilize F5's **AS3** extension
+In this module we will explore how to use F5's **AS3** extension
 with **BIG-IQ 6.1**.
 
 **Application Services 3 Extension** (referred to as AS3 Extension or more often simply AS3) is a flexible, 
@@ -43,7 +43,7 @@ The declaration represents the configuration which AS3 is responsible for creati
 AS3 is well-defined according to the rules of JSON Schema, and declarations validate according to JSON Schema.
 AS3 accepts declaration updates via REST (push), reference (pull), or CLI (flat file editing).
 
-**BIG-IQ** is a now a key component of F5 BIG-IP Cloud Edition™. This new solution
+**BIG-IQ** is a a key component of F5 BIG-IP Cloud Edition™. This new solution
 provides DevOps and application teams with self-service management of F5 application
 services, along with per-app manageability and analytics. 
 
@@ -55,8 +55,9 @@ Layer 4-7 Application Service Delivery
 
 L4-7 Application Service Delivery is accomplished by:
 
--  Providing **templates** within **BIG-IQ 6.1** as a Service Catalog to interact
-   with **AS3**.
+-  Providing **templates** within **BIG-IQ 6.1** as a Service Catalog. With **BIG-IQ 6.1**, you will have access to 
+   the traditional templates provided with **BIG-IQ 6.0** but you'll be able to create new kind of templates to consume 
+   **AS3**. 
 
 -  Utilizing BIG-IQ's **Roll Based Access Control (RBAC)** to divide
    workloads based on user functions.
@@ -64,22 +65,25 @@ L4-7 Application Service Delivery is accomplished by:
 The labs in the module will focus on the high level features in place to
 achieve full L4-7 automation.
 
-In this Module we will provision **BIG-IQ 6.1** to deploy and modify the AS3
-declarations you learned about in Module 2. The focus of Module 2 was to
-demonstrate application deployment directly on to the BIG-IP. **BIG-IQ 6.1** will allow
-the administrator to build an interface and API for users based on their current
-role within the orginization.
+In this Module, we will provision **BIG-IQ 6.1** to deploy and modify the AS3
+declarations you learned about in Module 2 on a **per service basis** 
+(Reminder: AS3 is designed to handle a tenant configuration and not do service 
+per service configuration)
 
-For example, in Module 2 we pushed AS3 declarations, updated pool members, and
+The focus of Module 2 was to demonstrate application deployment directly on to the BIG-IP. 
+**BIG-IQ 6.1** will allow the administrator to build an interface and API for users based 
+on their current role within the organization.
+
+For example, in Module 2, we pushed AS3 declarations, updated pool members, and
 provided the user access to modify the full AS3 declaration. This approach would
 provide each user the same administrative priviledges and may not scale within
-orginizations with seperate user functions.
+organizations with separate user functions.
 
-To solve this problem **BIG-IQ 6.1** allows the administrator to create
+To solve this problem, **BIG-IQ 6.1** allows the administrator to create
 **Templates** which can provide further **Abstraction** of the AS3 declarations.
 The administrator can enforce specific Tenants or parameters to be used based on
-the user running the Template. This abstraction allows the templates to be
-integrated directly into the business based CI/CD toolchains and workflows.
+the user running the template. This abstraction allows the templates to be
+integrated directly into the relevant CI/CD toolchains and workflows.
 
 .. toctree::
    :maxdepth: 1

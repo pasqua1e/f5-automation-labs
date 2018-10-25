@@ -91,11 +91,11 @@ Add the target information before the tenant application::
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
     },
 
-.. note:: The target BIG-IP is standlone but it could be configured as an HA pair.
+.. note:: The target BIG-IP is standalone but it could be configured as an HA pair.
           If you want, configure the HA in auto-scync mode. Configure the BIG-IP cluster in BIG-IQ.
           The target in this case can be either device.
 
-Modify the Virtual Address to 10.1.20.100 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.100 and the server Addresses from 10.1.10.100 to 10.1.10.104.
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
@@ -122,9 +122,9 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Repeat steps from Task 1 with  below example.
+Repeat steps from Task 1 with the exmaple below.
 
-Modify the Virtual Address to 10.1.20.101 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.100 to 10.1.10.104.
 
 .. code-block:: yaml
    :linenos:
@@ -293,7 +293,8 @@ Repeat steps from Task 1 with  below example.
 
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
-Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, 
+port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
 .. code-block:: yaml
    :linenos:
