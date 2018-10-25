@@ -4,7 +4,8 @@ Lab 4.3: Deploying AS3 Templates with BIG-IQ 6.1
 Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Using Postman,, copy below example of an AS3 Template into  **BIG-IQ AS3 Template Creation** collection in order to create the template in BIG-IQ AS3 Service Catalogue.
+#. Using Postman, copy the below example of an AS3 Template into  **BIG-IQ AS3 Template Creation** collection.
+    it will create a new template in BIG-IQ AS3 Service Catalogue.
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
 
