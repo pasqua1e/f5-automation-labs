@@ -12,9 +12,61 @@ Press Send. Then, select the token value, click right, Set Globals, _f5_token.
 Task 1 - HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Select the `Example 1 Simple HTTP application`_ from AS3 cloud docs and past it in the AS3 public validator.
+#. Copy below example of an AS3 Declaration into the AS3 public validator.
 
-.. _Example 1 Simple HTTP application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 8,19
+
+    {
+        "class": "AS3",
+        "action": "deploy",
+        "targetHost": "<big-iq>",
+        "targetPort": 443,
+        "targetUsername": "<user>",
+        "targetPassphrase": "<password>",
+        "persist": true,
+        "declaration": {
+            "class": "ADC",
+            "schemaVersion": "3.6.0",
+            "id": "example-declaration-01",
+            "label": "Task1",
+            "remark": "Task 1 - HTTP Application Service",
+            "target": {
+                "hostname": "<hostname>"
+            },
+            "Task1": {
+                "class": "Tenant",
+                "MyWebApp1": {
+                    "class": "Application",
+                    "template": "http",
+                    "serviceMain": {
+                        "class": "Service_HTTP",
+                        "virtualAddresses": [
+                            "<virtual>"
+                        ],
+                        "pool": "web_pool"
+                    },
+                    "web_pool": {
+                        "class": "Pool",
+                        "monitors": [
+                            "http"
+                        ],
+                        "members": [
+                            {
+                                "servicePort": 80,
+                                "serverAddresses": [
+                                    "<node1>",
+                                    "<node2>"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://localhost:5000 (or use UDP public IP).
 
@@ -39,6 +91,10 @@ Add the target information before the tenant application::
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
     },
 
+.. note:: The target BIG-IP is standlone but it could be configured as an HA pair.
+          If you want, configure the HA in auto-scync mode. Configure the BIG-IP cluster in BIG-IQ.
+          The target in this case can be either device.
+
 Modify the Virtual Address to 10.1.20.100 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
@@ -56,7 +112,9 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
-#. Logon on BIG-IQ, go to Application tab and check the application is displayed and analytics are showing.
+#. Logon on BIG-IP and verifiy the Application is correctly deployed.
+
+#. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
 
@@ -64,39 +122,233 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Repeat Task 1 with `Example 2 HTTPS application`_ from AS3 cloud docs.
-
-.. _Example 2 HTTPS application: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/userguide/examples.html#example-2-https-application
-
+Repeat steps from Task 1 with  below example.
 
 Modify the Virtual Address to 10.1.20.101 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
 
-Task 3 - Web Application Firewall
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 8,19
 
-Repeat Task 1 with `1 Virtual service referencing an existing security policy`_ from AS3 cloud docs.
-
-.. _1 Virtual service referencing an existing security policy: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/declarations/security-related.html#virtual-service-referencing-an-existing-security-policy
-
-Update the WAF policy with the default policy delivered with BIG-IQ::
-
- "policyWAF": {
-          "bigip": "/Common/templates-default"
+    {
+        "class": "AS3",
+        "action": "deploy",
+        "targetHost": "<big-iq>",
+        "targetPort": 443,
+        "targetUsername": "<user>",
+        "targetPassphrase": "<password>",
+        "persist": true,
+        "declaration": {
+            "class": "ADC",
+            "schemaVersion": "3.6.0",
+            "id": "isc-lab",
+            "label": "Task2",
+            "remark": "Task 2 - HTTPS Application Service",
+            "target": {
+                "hostname": "<hostname>"
+            },
+            "Task2": {
+                "class": "Tenant",
+                "MyWebApp2": {
+                    "class": "Application",
+                    "template": "https",
+                    "serviceMain": {
+                        "class": "Service_HTTPS",
+                        "virtualAddresses": [
+                            "<virtual>"
+                        ],
+                        "pool": "web_pool",
+                        "serverTLS": "webtls"
+                    },
+                    "web_pool": {
+                        "class": "Pool",
+                        "monitors": [
+                            "http"
+                        ],
+                        "members": [
+                            {
+                                "servicePort": 80,
+                                "serverAddresses": [
+                                    "<node1>",
+                                    "<node2>"
+                                ]
+                            }
+                        ]
+                    },
+                    "webtls": {
+                        "class": "TLS_Server",
+                        "certificates": [
+                            {
+                                "certificate": "webcert"
+                            }
+                        ]
+                    },
+                    "webcert": {
+                        "class": "Certificate",
+                        "certificate": {
+                            "bigip": "/Common/default.crt"
+                        },
+                        "privateKey": {
+                            "bigip": "/Common/default.key"
+                        }
+                    }
+                }
+            }
         }
+    }
+
+
+Task 3 - HTTPS Application with Web Application Firewall
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Repeat steps from Task 1 with  below example.
 
 Modify the Virtual Address to 10.1.20.102 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+
+Update the WAF policy with the policy available on BIG-IP::
+
+ "policyWAF": {
+          "bigip": "/Common/linux-high"
+        }
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 8,19
+
+    {
+        "class": "AS3",
+        "action": "deploy",
+        "targetHost": "<big-iq>",
+        "targetPort": 443,
+        "targetUsername": "<user>",
+        "targetPassphrase": "<password>",
+        "persist": true,
+        "declaration": {
+            "class": "ADC",
+            "schemaVersion": "3.6.0",
+            "id": "isc-lab",
+            "label": "Task3",
+            "remark": "Task 3 - HTTPS Application with WAF",
+            "target": {
+                "hostname": "<hostname>"
+            },
+            "Task3": {
+                "class": "Tenant",
+                "MyWebApp3": {
+                    "class": "Application",
+                    "template": "https",
+                    "serviceMain": {
+                        "class": "Service_HTTPS",
+                        "virtualAddresses": [
+                            "<virtual>"
+                        ],
+                        "pool": "web_pool",
+                        "serverTLS": "webtls",
+                        "policyWAF": {
+                            "bigip": "/Common/<ASM policy>"
+                        }
+                    },
+                    "web_pool": {
+                        "class": "Pool",
+                        "monitors": [
+                            "http"
+                        ],
+                        "members": [
+                            {
+                                "servicePort": 80,
+                                "serverAddresses": [
+                                    "<node1>",
+                                    "<node2>"
+                                ]
+                            }
+                        ]
+                    },
+                    "webtls": {
+                        "class": "TLS_Server",
+                        "certificates": [
+                            {
+                                "certificate": "webcert"
+                            }
+                        ]
+                    },
+                    "webcert": {
+                        "class": "Certificate",
+                        "certificate": {
+                            "bigip": "/Common/default.crt"
+                        },
+                        "privateKey": {
+                            "bigip": "/Common/default.key"
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 Task 4 - Generic Services
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Repeat Task 1 with `Example 24 Using the Service_Generic class`_ from AS3 cloud docs.
-
-.. _Example 24 Using the Service_Generic class: https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/3/refguide/additional-examples.html#example-24-using-the-service-generic-class
+Repeat steps from Task 1 with  below example.
 
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
-Modify the Virtual Address to 10.1.20.103, port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 8,19
+
+    {
+        "class": "AS3",
+        "action": "deploy",
+        "targetHost": "<big-iq>",
+        "targetPort": 443,
+        "targetUsername": "<user>",
+        "targetPassphrase": "<password>",
+        "persist": true,
+        "declaration": {
+            "class": "ADC",
+            "schemaVersion": "3.6.0",
+            "id": "isc-lab",
+            "label": "Task4",
+            "remark": "Task 4 - Generic Services",
+            "target": {
+                "hostname": "<hostname>"
+            },
+            "Task4": {
+            "class": "Tenant",
+            "MyWebApp4": {
+                "class": "Application",
+                "template": "generic",
+                "<generic_virtual>": {
+                    "class": "Service_Generic",
+                    "virtualAddresses": [
+                        "<virtual>"
+                    ],
+                    "virtualPort": 8080,
+                    "pool": "web_pool"
+                },
+                "web_pool": {
+                    "class": "Pool",
+                    "monitors": [
+                        "tcp"
+                    ],
+                    "members": [
+                        {
+                            "servicePort": 80,
+                            "serverAddresses": [
+                                "<node1>",
+                                "<node2>"
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+        }
+    }
+
 
 .. |lab-1-1| image:: images/lab-1-1.png
    :scale: 80%
