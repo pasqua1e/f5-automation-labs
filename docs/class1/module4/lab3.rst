@@ -13,7 +13,6 @@ Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 8,19
 
     {
         "description": "",
@@ -82,13 +81,15 @@ Task 7 - Olivia set RBAC for Paula on BIG-IQ
 Task 8 - As Paula, deploy the HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Using Postman, copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+#. Using Postman, copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
   
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
+Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.100 to 10.1.10.104.
+
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 8,19
+   :emphasize-lines: 4,6,7,11,28,37
 
     {
         "class": "AS3",
@@ -117,7 +118,7 @@ Task 8 - As Paula, deploy the HTTP Application Service
                     "serviceMain": {
                         "class": "Service_HTTP",
                         "virtualAddresses": [
-                            "10.1.20.105"
+                            "<virtual>"
                         ],
                         "pool": "pool_8"
                     },
@@ -126,7 +127,7 @@ Task 8 - As Paula, deploy the HTTP Application Service
                         "members": [
                             {
                                 "serverAddresses": [
-                                    "10.1.10.102"
+                                    "<node1>"
                                 ],
                                 "servicePort": 80
                             }

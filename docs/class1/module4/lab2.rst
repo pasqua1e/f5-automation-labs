@@ -12,7 +12,7 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 8,19
+   :emphasize-lines: 7,21,22,38,41
 
     "MyWebApp6": {
                 "class": "Application",
