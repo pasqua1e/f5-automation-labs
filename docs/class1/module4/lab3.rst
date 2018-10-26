@@ -78,6 +78,7 @@ Task 7 - Olivia set RBAC for Paula on BIG-IQ
 
 |lab-3-3|
 
+
 Task 8 - As Paula, deploy the HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -153,4 +154,4 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 .. |lab-3-2| image:: images/lab-3-2.png
    :scale: 80%
 .. |lab-3-3| image:: images/lab-3-3.png
-   :scale: 80%
+   :scale: 60%
