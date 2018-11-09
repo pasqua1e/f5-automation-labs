@@ -96,7 +96,6 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-
 #. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 
