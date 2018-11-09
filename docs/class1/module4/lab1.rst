@@ -169,7 +169,7 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
                         "pool": "web_pool",
                         "profileAnalytics": {
                            "use": "statsProfile"
-                        }
+                        },
                         "serverTLS": "webtls"
                     },
                     "web_pool": {
