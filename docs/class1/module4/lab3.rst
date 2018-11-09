@@ -95,16 +95,12 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.
     {
         "class": "AS3",
         "action": "deploy",
-        "targetHost": "<big-iq>",
-        "targetPort": 443,
-        "targetUsername": "<user>",
-        "targetPassphrase": "<password>",
         "declaration": {
             "class": "ADC",
             "target": {
                 "hostname": "<hostname>"
             },
-            "schemaVersion": "3.6.0",
+            "schemaVersion": "3.7.0",
             "id": "isc-lab",
             "controls": {
                 "class": "Controls",
@@ -116,12 +112,26 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.
                     "class": "Application",
                     "schemaOverlay": "HTTPcustomTemplateTask6",
                     "template": "http",
+                    "statsProfile": {
+                        "class": "Analytics_Profile",
+                        "collectedStatsInternalLogging": true,
+                        "collectedStatsExternalLogging": false,
+                        "capturedTrafficInternalLogging": false,
+                        "capturedTrafficExternalLogging": true,
+                        "collectPageLoadTime": true,
+                        "collectClientSideStatistics": true,
+                        "collectResponseCode": true,
+                        "sessionCookieSecurity": "ssl-only"
+                    },
                     "serviceMain": {
                         "class": "Service_HTTP",
                         "virtualAddresses": [
                             "<virtual>"
                         ],
-                        "pool": "pool_8"
+                        "pool": "pool_8",
+                        "profileAnalytics": {
+                            "use": "statsProfile"
+                        }
                     },
                     "pool_8": {
                         "class": "Pool",
@@ -138,7 +148,7 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.
             }
         }
     }
-
+    
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
