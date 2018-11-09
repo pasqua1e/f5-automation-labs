@@ -67,7 +67,8 @@ Task 1 - HTTP Application Service
                                 "serverAddresses": [
                                     "<node1>",
                                     "<node2>"
-                                ]
+                                ],
+                            "shareNodes": true
                             }
                         ]
                     }
@@ -183,7 +184,8 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
                                 "serverAddresses": [
                                     "<node1>",
                                     "<node2>"
-                                ]
+                                ],
+                            "shareNodes": true
                             }
                         ]
                     },
@@ -267,7 +269,8 @@ Update the WAF policy with the policy available on BIG-IP::
                                 "serverAddresses": [
                                     "<node1>",
                                     "<node2>"
-                                ]
+                                ],
+                            "shareNodes": true
                             }
                         ]
                     },
@@ -345,7 +348,8 @@ port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.1
                             "serverAddresses": [
                                 "<node1>",
                                 "<node2>"
-                            ]
+                            ],
+                            "shareNodes": true
                         }
                     ]
                 }
