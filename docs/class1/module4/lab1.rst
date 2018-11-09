@@ -17,66 +17,65 @@ Task 1 - HTTP Application Service
    :linenos:
    :emphasize-lines: 4,6,7,16,26,39,40
 
-    {
-        "class": "AS3",
-        "action": "deploy",
-        "persist": true,
-        "declaration": {
-            "class": "ADC",
-            "schemaVersion": "3.7.0",
-            "id": "example-declaration-01",
-            "label": "Task1",
-            "remark": "Task 1 - HTTP Application Service",
-            "target": {
-                "hostname": "<hostname>"
-            },
-            "Task1": {
-                "class": "Tenant",
-                "MyWebApp1": {
-                    "class": "Application",
-                    "template": "http",
-                    "statsProfile": {
-                        "class": "Analytics_Profile",
-                        "collectedStatsInternalLogging": true,
-                        "collectedStatsExternalLogging": false,
-                        "capturedTrafficInternalLogging": false,
-                        "capturedTrafficExternalLogging": true,
-                        "collectPageLoadTime": true,
-                        "collectClientSideStatistics": true,
-                        "collectResponseCode": true,
-                        "sessionCookieSecurity": "ssl-only"
-                    },
-                    "serviceMain": {
-                        "class": "Service_HTTP",
-                        "virtualAddresses": [
-                            "<virtual>"
-                        ],
-                        "pool": "web_pool",
-                        "profileAnalytics": {
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "example-declaration-01",
+           "label": "Task1",
+           "remark": "Task 1 - HTTP Application Service",
+           "target": {
+               "hostname": "<hostname>"
+           },
+           "Task1": {
+               "class": "Tenant",
+               "MyWebApp1": {
+                   "class": "Application",
+                   "template": "http",
+                   "statsProfile": {
+                       "class": "Analytics_Profile",
+                       "collectedStatsInternalLogging": true,
+                       "collectedStatsExternalLogging": false,
+                       "capturedTrafficInternalLogging": false,
+                       "capturedTrafficExternalLogging": true,
+                       "collectPageLoadTime": true,
+                       "collectClientSideStatistics": true,
+                       "collectResponseCode": true,
+                       "sessionCookieSecurity": "ssl-only"
+                   },
+                   "serviceMain": {
+                       "class": "Service_HTTP",
+                       "virtualAddresses": [
+                           "<virtual>"
+                       ],
+                       "pool": "web_pool",
+                       "profileAnalytics": {
                            "use": "statsProfile"
-                        }
-                    },
-                    "web_pool": {
-                        "class": "Pool",
-                        "monitors": [
-                            "http"
-                        ],
-                        "members": [
-                            {
-                                "servicePort": 80,
-                                "serverAddresses": [
-                                    "<node1>",
-                                    "<node2>"
-                                ],
-                            "shareNodes": true
-                            }
-                        ]
-                    }
-                }
-            }
-        }
-    }
-
+                       }
+                   },
+                   "web_pool": {
+                       "class": "Pool",
+                       "monitors": [
+                           "http"
+                       ],
+                       "members": [
+                           {
+                               "servicePort": 80,
+                               "serverAddresses": [
+                                   "<node1>",
+                                   "<node2>"
+                               ],
+                               "shareNodes": true
+                           }
+                       ]
+                   }
+               }
+           }
+       }
+   }
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
@@ -133,84 +132,83 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
    :linenos:
    :emphasize-lines: 4,6,7,16,26,40,41
 
-    {
-        "class": "AS3",
-        "action": "deploy",
-        "persist": true,
-        "declaration": {
-            "class": "ADC",
-            "schemaVersion": "3.7.0",
-            "id": "isc-lab",
-            "label": "Task2",
-            "remark": "Task 2 - HTTPS Application Service",
-            "target": {
-                "hostname": "<hostname>"
-            },
-            "Task2": {
-                "class": "Tenant",
-                "MyWebApp2": {
-                    "class": "Application",
-                    "template": "https",
-                    "statsProfile": {
-                        "class": "Analytics_Profile",
-                        "collectedStatsInternalLogging": true,
-                        "collectedStatsExternalLogging": false,
-                        "capturedTrafficInternalLogging": false,
-                        "capturedTrafficExternalLogging": true,
-                        "collectPageLoadTime": true,
-                        "collectClientSideStatistics": true,
-                        "collectResponseCode": true,
-                        "sessionCookieSecurity": "ssl-only"
-                    },
-                    "serviceMain": {
-                        "class": "Service_HTTPS",
-                        "virtualAddresses": [
-                            "<virtual>"
-                        ],
-                        "pool": "web_pool",
-                        "profileAnalytics": {
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "isc-lab",
+           "label": "Task2",
+           "remark": "Task 2 - HTTPS Application Service",
+           "target": {
+               "hostname": "<hostname>"
+           },
+           "Task2": {
+               "class": "Tenant",
+               "MyWebApp2": {
+                   "class": "Application",
+                   "template": "https",
+                   "statsProfile": {
+                       "class": "Analytics_Profile",
+                       "collectedStatsInternalLogging": true,
+                       "collectedStatsExternalLogging": false,
+                       "capturedTrafficInternalLogging": false,
+                       "capturedTrafficExternalLogging": true,
+                       "collectPageLoadTime": true,
+                       "collectClientSideStatistics": true,
+                       "collectResponseCode": true,
+                       "sessionCookieSecurity": "ssl-only"
+                   },
+                   "serviceMain": {
+                       "class": "Service_HTTPS",
+                       "virtualAddresses": [
+                           "<virtual>"
+                       ],
+                       "pool": "web_pool",
+                       "profileAnalytics": {
                            "use": "statsProfile"
-                        },
-                        "serverTLS": "webtls"
-                    },
-                    "web_pool": {
-                        "class": "Pool",
-                        "monitors": [
-                            "http"
-                        ],
-                        "members": [
-                            {
-                                "servicePort": 80,
-                                "serverAddresses": [
-                                    "<node1>",
-                                    "<node2>"
-                                ],
-                            "shareNodes": true
-                            }
-                        ]
-                    },
-                    "webtls": {
-                        "class": "TLS_Server",
-                        "certificates": [
-                            {
-                                "certificate": "webcert"
-                            }
-                        ]
-                    },
-                    "webcert": {
-                        "class": "Certificate",
-                        "certificate": {
-                            "bigip": "/Common/default.crt"
-                        },
-                        "privateKey": {
-                            "bigip": "/Common/default.key"
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+                       },
+                       "serverTLS": "webtls"
+                   },
+                   "web_pool": {
+                       "class": "Pool",
+                       "monitors": [
+                           "http"
+                       ],
+                       "members": [
+                           {
+                               "servicePort": 80,
+                               "serverAddresses": [
+                                   "<node1>",
+                                   "<node2>"
+                               ],
+                               "shareNodes": true
+                           }
+                       ]
+                   },
+                   "webtls": {
+                       "class": "TLS_Server",
+                       "certificates": [
+                           {
+                               "certificate": "webcert"
+                           }
+                       ]
+                   },
+                   "webcert": {
+                       "class": "Certificate",
+                       "certificate": {
+                           "bigip": "/Common/default.crt"
+                       },
+                       "privateKey": {
+                           "bigip": "/Common/default.key"
+                       }
+                   }
+               }
+           }
+       }
+   }
 
 Task 3 - HTTPS Application with Web Application Firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -229,72 +227,86 @@ Update the WAF policy with the policy available on BIG-IP::
    :linenos:
    :emphasize-lines: 4,6,7,16,26,31,43,44
 
-    {
-        "class": "AS3",
-        "action": "deploy",
-        "persist": true,
-        "declaration": {
-            "class": "ADC",
-            "schemaVersion": "3.7.0",
-            "id": "isc-lab",
-            "label": "Task3",
-            "remark": "Task 3 - HTTPS Application with WAF",
-            "target": {
-                "hostname": "<hostname>"
-            },
-            "Task3": {
-                "class": "Tenant",
-                "MyWebApp3": {
-                    "class": "Application",
-                    "template": "https",
-                    "serviceMain": {
-                        "class": "Service_HTTPS",
-                        "virtualAddresses": [
-                            "<virtual>"
-                        ],
-                        "pool": "web_pool",
-                        "serverTLS": "webtls",
-                        "policyWAF": {
-                            "bigip": "/Common/<ASM policy>"
-                        }
-                    },
-                    "web_pool": {
-                        "class": "Pool",
-                        "monitors": [
-                            "http"
-                        ],
-                        "members": [
-                            {
-                                "servicePort": 80,
-                                "serverAddresses": [
-                                    "<node1>",
-                                    "<node2>"
-                                ],
-                            "shareNodes": true
-                            }
-                        ]
-                    },
-                    "webtls": {
-                        "class": "TLS_Server",
-                        "certificates": [
-                            {
-                                "certificate": "webcert"
-                            }
-                        ]
-                    },
-                    "webcert": {
-                        "class": "Certificate",
-                        "certificate": {
-                            "bigip": "/Common/default.crt"
-                        },
-                        "privateKey": {
-                            "bigip": "/Common/default.key"
-                        }
-                    }
-                }
-            }
-        }
-    }
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "isc-lab",
+           "label": "Task3",
+           "remark": "Task 3 - HTTPS Application with WAF",
+           "target": {
+               "hostname": "<hostname>"
+           },
+           "Task3": {
+               "class": "Tenant",
+               "MyWebApp3": {
+                   "class": "Application",
+                   "template": "https",
+                   "statsProfile": {
+                       "class": "Analytics_Profile",
+                       "collectedStatsInternalLogging": true,
+                       "collectedStatsExternalLogging": false,
+                       "capturedTrafficInternalLogging": false,
+                       "capturedTrafficExternalLogging": true,
+                       "collectPageLoadTime": true,
+                       "collectClientSideStatistics": true,
+                       "collectResponseCode": true,
+                       "sessionCookieSecurity": "ssl-only"
+                   },
+                   "serviceMain": {
+                       "class": "Service_HTTPS",
+                       "virtualAddresses": [
+                           "<virtual>"
+                       ],
+                       "pool": "web_pool",
+                       "profileAnalytics": {
+                           "use": "statsProfile"
+                       },
+                       "serverTLS": "webtls",
+                       "policyWAF": {
+                           "bigip": "/Common/<ASM policy>"
+                       }
+                   },
+                   "web_pool": {
+                       "class": "Pool",
+                       "monitors": [
+                           "http"
+                       ],
+                       "members": [
+                           {
+                               "servicePort": 80,
+                               "serverAddresses": [
+                                   "<node1>",
+                                   "<node2>"
+                               ],
+                               "shareNodes": true
+                           }
+                       ]
+                   },
+                   "webtls": {
+                       "class": "TLS_Server",
+                       "certificates": [
+                           {
+                               "certificate": "webcert"
+                           }
+                       ]
+                   },
+                   "webcert": {
+                       "class": "Certificate",
+                       "certificate": {
+                           "bigip": "/Common/default.crt"
+                       },
+                       "privateKey": {
+                           "bigip": "/Common/default.key"
+                       }
+                   }
+               }
+           }
+       }
+   }
 
 
 Task 4 - Generic Services
@@ -311,53 +323,66 @@ port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.1
    :linenos:
    :emphasize-lines: 4,6,7,16,23,26,40,41
 
-    {
-        "class": "AS3",
-        "action": "deploy",
-        "persist": true,
-        "declaration": {
-            "class": "ADC",
-            "schemaVersion": "3.7.0",
-            "id": "isc-lab",
-            "label": "Task4",
-            "remark": "Task 4 - Generic Services",
-            "target": {
-                "hostname": "<hostname>"
-            },
-            "Task4": {
-            "class": "Tenant",
-            "MyWebApp4": {
-                "class": "Application",
-                "template": "generic",
-                "<generic_virtual>": {
-                    "class": "Service_Generic",
-                    "virtualAddresses": [
-                        "<virtual>"
-                    ],
-                    "virtualPort": 8080,
-                    "pool": "web_pool"
-                },
-                "web_pool": {
-                    "class": "Pool",
-                    "monitors": [
-                        "tcp"
-                    ],
-                    "members": [
-                        {
-                            "servicePort": 80,
-                            "serverAddresses": [
-                                "<node1>",
-                                "<node2>"
-                            ],
-                            "shareNodes": true
-                        }
-                    ]
-                }
-            }
-        }
-        }
-    }
-
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "isc-lab",
+           "label": "Task4",
+           "remark": "Task 4 - Generic Services",
+           "target": {
+               "hostname": "<hostname>"
+           },
+           "Task4": {
+               "class": "Tenant",
+               "MyWebApp4": {
+                   "class": "Application",
+                   "template": "generic",
+                   "statsProfile": {
+                       "class": "Analytics_Profile",
+                       "collectedStatsInternalLogging": true,
+                       "collectedStatsExternalLogging": false,
+                       "capturedTrafficInternalLogging": false,
+                       "capturedTrafficExternalLogging": true,
+                       "collectPageLoadTime": true,
+                       "collectClientSideStatistics": true,
+                       "collectResponseCode": true,
+                       "sessionCookieSecurity": "ssl-only"
+                   },
+                   "<generic_virtual>": {
+                       "class": "Service_Generic",
+                       "virtualAddresses": [
+                           "<virtual>"
+                       ],
+                       "virtualPort": 8080,
+                       "pool": "web_pool",
+                       "profileAnalytics": {
+                           "use": "statsProfile"
+                       }
+                   },
+                   "web_pool": {
+                       "class": "Pool",
+                       "monitors": [
+                           "tcp"
+                       ],
+                       "members": [
+                           {
+                               "servicePort": 80,
+                               "serverAddresses": [
+                                   "<node1>",
+                                   "<node2>"
+                               ],
+                               "shareNodes": true
+                           }
+                       ]
+                   }
+               }
+           }
+       }
+   }
 
 .. |lab-1-1| image:: images/lab-1-1.png
    :scale: 80%
