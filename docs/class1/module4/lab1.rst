@@ -106,7 +106,9 @@ Modify the Virtual Address to 10.1.20.100 and the server Addresses from 10.1.10.
 #. POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
    .. note:: https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+   
    This will give you an ID which you can query in the task section
+   
    https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
