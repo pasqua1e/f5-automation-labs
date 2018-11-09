@@ -50,7 +50,8 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
                        "serverAddresses": [
                            "<node3>",
                            "<node4>"
-                       ]
+                       ],
+                       "shareNodes": true
                    }
                ]
            },
