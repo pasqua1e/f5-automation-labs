@@ -23,7 +23,7 @@ Task 1 - HTTP Application Service
         "persist": true,
         "declaration": {
             "class": "ADC",
-            "schemaVersion": "3.6.0",
+            "schemaVersion": "3.7.0",
             "id": "example-declaration-01",
             "label": "Task1",
             "remark": "Task 1 - HTTP Application Service",
@@ -135,14 +135,10 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
     {
         "class": "AS3",
         "action": "deploy",
-        "targetHost": "<big-iq>",
-        "targetPort": 443,
-        "targetUsername": "<user>",
-        "targetPassphrase": "<password>",
         "persist": true,
         "declaration": {
             "class": "ADC",
-            "schemaVersion": "3.6.0",
+            "schemaVersion": "3.7.0",
             "id": "isc-lab",
             "label": "Task2",
             "remark": "Task 2 - HTTPS Application Service",
@@ -154,12 +150,26 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
                 "MyWebApp2": {
                     "class": "Application",
                     "template": "https",
+                    "statsProfile": {
+                        "class": "Analytics_Profile",
+                        "collectedStatsInternalLogging": true,
+                        "collectedStatsExternalLogging": false,
+                        "capturedTrafficInternalLogging": false,
+                        "capturedTrafficExternalLogging": true,
+                        "collectPageLoadTime": true,
+                        "collectClientSideStatistics": true,
+                        "collectResponseCode": true,
+                        "sessionCookieSecurity": "ssl-only"
+                    },
                     "serviceMain": {
                         "class": "Service_HTTPS",
                         "virtualAddresses": [
                             "<virtual>"
                         ],
                         "pool": "web_pool",
+                        "profileAnalytics": {
+                           "use": "statsProfile"
+                        }
                         "serverTLS": "webtls"
                     },
                     "web_pool": {
@@ -220,14 +230,10 @@ Update the WAF policy with the policy available on BIG-IP::
     {
         "class": "AS3",
         "action": "deploy",
-        "targetHost": "<big-iq>",
-        "targetPort": 443,
-        "targetUsername": "<user>",
-        "targetPassphrase": "<password>",
         "persist": true,
         "declaration": {
             "class": "ADC",
-            "schemaVersion": "3.6.0",
+            "schemaVersion": "3.7.0",
             "id": "isc-lab",
             "label": "Task3",
             "remark": "Task 3 - HTTPS Application with WAF",
@@ -305,14 +311,10 @@ port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.1
     {
         "class": "AS3",
         "action": "deploy",
-        "targetHost": "<big-iq>",
-        "targetPort": 443,
-        "targetUsername": "<user>",
-        "targetPassphrase": "<password>",
         "persist": true,
         "declaration": {
             "class": "ADC",
-            "schemaVersion": "3.6.0",
+            "schemaVersion": "3.7.0",
             "id": "isc-lab",
             "label": "Task4",
             "remark": "Task 4 - Generic Services",
