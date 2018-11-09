@@ -8,7 +8,6 @@ Press Send. This, will save the token value as _f5_token. If you token expires, 
 
 |lab-1-1|
 
-
 Task 1 - HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -21,10 +20,6 @@ Task 1 - HTTP Application Service
     {
         "class": "AS3",
         "action": "deploy",
-        "targetHost": "<big-iq>",
-        "targetPort": 443,
-        "targetUsername": "<user>",
-        "targetPassphrase": "<password>",
         "persist": true,
         "declaration": {
             "class": "ADC",
@@ -40,12 +35,26 @@ Task 1 - HTTP Application Service
                 "MyWebApp1": {
                     "class": "Application",
                     "template": "http",
+                    "statsProfile": {
+                        "class": "Analytics_Profile",
+                        "collectedStatsInternalLogging": true,
+                        "collectedStatsExternalLogging": false,
+                        "capturedTrafficInternalLogging": false,
+                        "capturedTrafficExternalLogging": true,
+                        "collectPageLoadTime": true,
+                        "collectClientSideStatistics": true,
+                        "collectResponseCode": true,
+                        "sessionCookieSecurity": "ssl-only"
+                    },
                     "serviceMain": {
                         "class": "Service_HTTP",
                         "virtualAddresses": [
                             "<virtual>"
                         ],
                         "pool": "web_pool"
+                        "profileAnalytics": {
+                           "use": "statsProfile"
+                        }
                     },
                     "web_pool": {
                         "class": "Pool",
