@@ -90,11 +90,11 @@ Modify the Virtual Address to 10.1.20.104 and the serverAddresses from 10.1.10.1
 
 #. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
-    POST https://10.1.1.4/mgmt/shared/appsvcs/declare
+POST https://10.1.1.4/mgmt/shared/appsvcs/declare
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
-    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
 #. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
