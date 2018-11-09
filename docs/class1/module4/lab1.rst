@@ -4,7 +4,7 @@ Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
 #. Using Postman select ``BIG-IQ Token`` available in the Collections.
-Press Send. Then, select the token value, click right, Set Globals, _f5_token.
+Press Send. This, will save the token value as _f5_token. If you token expires, obtain a new token by resending the ``BIG-IQ Token``
 
 |lab-1-1|
 
