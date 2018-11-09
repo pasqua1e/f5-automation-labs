@@ -77,7 +77,7 @@ Task 1 - HTTP Application Service
     }
 
 
-To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://localhost:5000 (or use UDP public IP).
+To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
 #. Click on ``Format JSON`` on the top left.
 
@@ -86,13 +86,6 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 #. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 #. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
-
-Add target host information under the action::
-
-    "targetHost": "10.1.1.4",
-    "targetPort": 443,
-    "targetUsername": "olivia",
-    "targetPassphrase": "olivia",
 
 Add the target information before the tenant application::
 
@@ -120,13 +113,11 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-
 #. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
 #. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
-
 
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
