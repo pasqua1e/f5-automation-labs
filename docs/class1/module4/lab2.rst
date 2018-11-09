@@ -14,52 +14,66 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
    :linenos:
    :emphasize-lines: 7,21,22,38,41
 
-    "MyWebApp6": {
-                "class": "Application",
-                "template": "https",
-                "serviceMain": {
-                    "class": "Service_HTTPS",
-                    "virtualAddresses": [
-                        "<virtual>"
-                    ],
-                    "pool": "web_pool",
-                    "serverTLS": "webtls"
-                },
-                "web_pool": {
-                    "class": "Pool",
-                    "monitors": [
-                        "http"
-                    ],
-                    "members": [
-                        {
-                            "servicePort": 80,
-                            "serverAddresses": [
-                                "<node3>",
-                                "<node4>"
-                            ]
-                        }
-                    ]
-                },
-                "webtls": {
-                    "class": "TLS_Server",
-                    "certificates": [
-                        {
-                            "certificate": "webcert"
-                        }
-                    ]
-                },
-                "webcert": {
-                    "class": "Certificate",
-                    "certificate": {
-                        "bigip": "<cert>"
-                    },
-                    "privateKey": {
-                        "bigip": "<key>"
-                    }
-                }
-            }
+   "MyWebApp6": {
+           "class": "Application",
+           "template": "https",
+           "statsProfile": {
+               "class": "Analytics_Profile",
+               "collectedStatsInternalLogging": true,
+               "collectedStatsExternalLogging": false,
+               "capturedTrafficInternalLogging": false,
+               "capturedTrafficExternalLogging": true,
+               "collectPageLoadTime": true,
+               "collectClientSideStatistics": true,
+               "collectResponseCode": true,
+               "sessionCookieSecurity": "ssl-only"
+           },
+           "serviceMain": {
+               "class": "Service_HTTPS",
+               "virtualAddresses": [
+                   "<virtual>"
+               ],
+               "pool": "web_pool",
+               "profileAnalytics": {
+                   "use": "statsProfile"
+               },
+               "serverTLS": "webtls"
+           },
+           "web_pool": {
+               "class": "Pool",
+               "monitors": [
+                   "http"
+               ],
+               "members": [
+                   {
+                       "servicePort": 80,
+                       "serverAddresses": [
+                           "<node3>",
+                           "<node4>"
+                       ]
+                   }
+               ]
+           },
+           "webtls": {
+               "class": "TLS_Server",
+               "certificates": [
+                   {
+                       "certificate": "webcert"
+                   }
+               ]
+           },
+           "webcert": {
+               "class": "Certificate",
+               "certificate": {
+                   "bigip": "<cert>"
+               },
+               "privateKey": {
+                   "bigip": "<key>"
+               }
+           }
+       }
 
-To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://localhost:5000 (or use UDP public IP).
+To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
 #. Click on ``Format JSON`` on the top left.
 
@@ -82,7 +96,7 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
-#. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
+#. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 
 .. |lab-2-1| image:: images/lab-2-1.png
