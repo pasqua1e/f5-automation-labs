@@ -98,7 +98,7 @@ Add the target information before the tenant application::
           If you want, configure the HA in auto-scync mode. Configure the BIG-IP cluster in BIG-IQ.
           The target in this case can be either device.
 
-Modify the Virtual Address to 10.1.20.100 and the server Addresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.100 and the server Addresses from 10.1.10.100 to 10.1.10.104. Since nodes are getting shared accross partitions use the "shareNodes": true
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
