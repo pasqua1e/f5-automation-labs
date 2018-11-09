@@ -51,7 +51,7 @@ Task 1 - HTTP Application Service
                         "virtualAddresses": [
                             "<virtual>"
                         ],
-                        "pool": "web_pool"
+                        "pool": "web_pool",
                         "profileAnalytics": {
                            "use": "statsProfile"
                         }
