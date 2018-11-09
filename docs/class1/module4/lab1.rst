@@ -117,7 +117,7 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 
 #. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
-#. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
+#. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
 
