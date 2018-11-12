@@ -90,7 +90,7 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 4,6,7,11,28,37
+   :emphasize-lines: 7,35,47
 
     {
         "class": "AS3",

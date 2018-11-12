@@ -15,7 +15,7 @@ Task 1 - HTTP Application Service
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 4,6,7,16,26,39,40
+   :emphasize-lines: 12,33,49,50
 
    {
        "class": "AS3",
@@ -130,7 +130,7 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 4,6,7,16,26,40,41
+   :emphasize-lines: 12,33,50,51
 
    {
        "class": "AS3",
@@ -225,7 +225,7 @@ Update the WAF policy with the policy available on BIG-IP::
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 4,6,7,16,26,31,43,44
+   :emphasize-lines: 12,33,41,53,54
 
    {
        "class": "AS3",
@@ -321,7 +321,7 @@ port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.1
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 4,6,7,16,23,26,40,41
+   :emphasize-lines: 12,33,50,51
 
    {
        "class": "AS3",
