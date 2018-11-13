@@ -69,7 +69,7 @@ In this Module, we will provision **BIG-IQ 6.1** to deploy and modify the AS3
 declarations.
 
 The focus of Module 2 was to demonstrate application deployment directly on to the BIG-IP. 
-**BIG-IQ 6.1** will allow the administrator to build an interface and API for users based 
+**BIG-IQ 6.1** will allow the administrator to restrict access an interface and API for users based 
 on their current role within the organization.
 
 For example, in Module 2, we pushed AS3 declarations, updated pool members, and

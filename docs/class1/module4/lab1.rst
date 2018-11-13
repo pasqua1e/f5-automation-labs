@@ -90,7 +90,7 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 .. note:: Ignore the schemaVersion error. Note the schema validator is using AS3.6 and we are using AS3.7.
 
-4. Now that the JSON is validated, let's add the traget (BIG-IP device)::
+4. Now that the JSON is validated, let's add the target (BIG-IP device)::
 
     "target": {
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
