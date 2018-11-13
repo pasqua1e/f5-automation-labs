@@ -64,6 +64,8 @@ It will create a new template in BIG-IQ AS3 Service Catalogue:
 
 |lab-3-1|
 
+Note the AS3 Template cannot be created through BIG-IQ UI but only using the API. You can only delete a AS3 templates from the BIG-IQ UI.
+
 You can see the Template in JSON format if you click on it.
 
 |lab-3-2|
