@@ -148,7 +148,7 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 6. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-7. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
+7. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    

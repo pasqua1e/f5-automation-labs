@@ -5,7 +5,7 @@ Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Copy the below example of an AS3 Template into the Postman **BIG-IQ AS3 Template Creation** collection.
-It will create a new template in BIG-IQ AS3 Service Catalogue.
+It will create a new template in BIG-IQ AS3 Service Catalogue:
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
 
@@ -85,7 +85,7 @@ Task 8 - As Olivia, deploy the HTTP Application Service
 
 1. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
 
-2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ:
 
 POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 

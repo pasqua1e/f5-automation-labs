@@ -105,7 +105,7 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100
 5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the AS3 declaration from the validator to the declaration body into Postman.
+Copy/Paste the AS3 declaration from the validator to the declaration body into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
@@ -134,7 +134,7 @@ Task 2 - HTTPS Offload
 Now we are going to create another service but this time SSL offload environment.
 
 1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the below AS3 declaration from the validator to the declaration body into Postman.
+Copy/Paste the below AS3 declaration from the validator to the declaration body into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
@@ -322,7 +322,7 @@ Update the WAF policy with the policy available on BIG-IP::
    }
 
 1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman.
+Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
@@ -407,7 +407,7 @@ Modify the Generic virtual with something other than <generic_virtual>.
    }
 
 1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman.
+Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
