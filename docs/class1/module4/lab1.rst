@@ -142,7 +142,6 @@ Copy/Paste the below AS3 declaration from the validator to the declaration body 
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 12,33,50,51
 
    {
        "class": "AS3",
@@ -239,7 +238,7 @@ Update the WAF policy with the policy available on BIG-IP::
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 12,33,41,53,54
+   :emphasize-lines: 41
 
    {
        "class": "AS3",
@@ -344,7 +343,7 @@ Modify the Generic virtual with something other than <generic_virtual>.
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 12,30,33,35,50,51
+   :emphasize-lines: 30
 
    {
        "class": "AS3",
