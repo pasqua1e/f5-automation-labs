@@ -420,7 +420,7 @@ Copy/Paste the above AS3 declaration from the validator to the declaration body 
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 .. |lab-1-1| image:: images/lab-1-1.png
-   :scale: 80%
+   :scale: 60%
 .. |lab-1-2| image:: images/lab-1-2.png
    :scale: 80%
 .. |lab-1-3| image:: images/lab-1-3.png
