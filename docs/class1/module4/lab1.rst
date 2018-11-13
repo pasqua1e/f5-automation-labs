@@ -8,6 +8,8 @@ Using the declarative AS3 API, let's send the following BIG-IP configuration thr
 Using Postman select ``BIG-IQ Token`` available in the Collections.
 Press Send. This, will save the token value as _f5_token. If your token expires, obtain a new token by resending the ``BIG-IQ Token``
 
+..note:: The token timeout is set to 5 min. If you get the 401 authorization error, request a new token.
+
 |lab-1-1|
 
 Task 1 - HTTP Application Service
@@ -107,17 +109,17 @@ Copy/Paste the AS3 declaration from the validator to the declaration body into P
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
-   This will give you an ID which you can query in the task section (as admin)
+   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
+
+7. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+
+   GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
-   https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
-
-7. Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
-
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-8. Logon on BIG-IP and verifiy the Application is correctly deployed.
+8. Logon on **BIG-IP A** and verifiy the Application is correctly deployed (check partition Task1)
 
-9. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
+9. Logon on **BIG-IQ** as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
 

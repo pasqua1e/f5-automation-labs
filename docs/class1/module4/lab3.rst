@@ -4,8 +4,8 @@ Lab 4.3: Deploying AS3 Templates with BIG-IQ 6.1
 Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Using Postman, copy the below example of an AS3 Template into  **BIG-IQ AS3 Template Creation** collection.
-    it will create a new template in BIG-IQ AS3 Service Catalogue.
+1. Copy the below example of an AS3 Template into the Postman **BIG-IQ AS3 Template Creation** collection.
+It will create a new template in BIG-IQ AS3 Service Catalogue.
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
 
@@ -83,15 +83,10 @@ Task 8 - As Olivia, deploy the HTTP Application Service
 
 1. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
 
-2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
-  
-   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
 
-   This will give you an ID which you can query in the task section (as admin)
-   
-   https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
+POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 
-Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.111.
 
 .. code-block:: yaml
    :linenos:
@@ -131,7 +126,7 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.11
                     "serviceMain": {
                         "class": "Service_HTTP",
                         "virtualAddresses": [
-                            "<virtual>"
+                            "10.1.20.105"
                         ],
                         "pool": "pool_8",
                         "profileAnalytics": {
@@ -146,7 +141,7 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.11
                         "members": [
                             {
                                 "serverAddresses": [
-                                    "<node11>"
+                                    "10.1.10.111"
                                 ],
                                 "servicePort": 80
                             }
@@ -156,15 +151,19 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.11
             }
         }
     }
-    
-Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
-    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+  
+   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**.
 
+3. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
 
-3. Logon on BIG-IP and verifiy the Application is correctly deployed.
+   GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
+   
+   GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-4. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
+4. Logon on BIG-IP and verifiy the Application is correctly deployed.
+
+5. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-3-4|
 
