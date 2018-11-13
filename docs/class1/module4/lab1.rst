@@ -105,19 +105,19 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100
 6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
 Copy/Paste the AS3 declaration from the validator to the declaration body into Postman.
 
-7. POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    This will give you an ID which you can query in the task section (as admin)
    
    https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
 
-Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
+7. Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
-8. GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+   GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-9. Logon on BIG-IP and verifiy the Application is correctly deployed.
+8. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
-10. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
+9. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
 
@@ -127,12 +127,6 @@ Task 2 - HTTPS Offload
 Repeat steps from Task 1 with the exmaple below.
 
 Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103 and 10.1.10.104.
-
-Add the target information before the tenant application::
-
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
 
 .. code-block:: yaml
    :linenos:
@@ -149,7 +143,7 @@ Add the target information before the tenant application::
            "label": "Task2",
            "remark": "Task 2 - HTTPS Application Service",
            "target": {
-               "hostname": "<hostname>"
+               "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
            },
            "Task2": {
                "class": "Tenant",
@@ -222,12 +216,6 @@ Repeat steps from Task 1 with  below example.
 
 Modify the Virtual Address to 10.1.20.102 and the serverAddresses to 10.1.10.105 and 10.1.10.106.
 
-Add the target information before the tenant application::
-
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
-
 Update the WAF policy with the policy available on BIG-IP::
 
  "policyWAF": {
@@ -249,7 +237,7 @@ Update the WAF policy with the policy available on BIG-IP::
            "label": "Task3",
            "remark": "Task 3 - HTTPS Application with WAF",
            "target": {
-               "hostname": "<hostname>"
+               "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
            },
            "Task3": {
                "class": "Tenant",
@@ -329,12 +317,6 @@ Repeat steps from Task 1 with  below example.
 Modify the Generic virtual with something other than <generic_virtual>, Virtual Address to 10.1.20.103, 
 port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.108.
 
-Add the target information before the tenant application::
-
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
-
 .. code-block:: yaml
    :linenos:
    :emphasize-lines: 12,30,33,50,51
@@ -350,7 +332,7 @@ Add the target information before the tenant application::
            "label": "Task4",
            "remark": "Task 4 - Generic Services",
            "target": {
-               "hostname": "<hostname>"
+               "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
            },
            "Task4": {
                "class": "Tenant",

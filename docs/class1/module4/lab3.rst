@@ -93,15 +93,9 @@ Task 8 - As Olivia, deploy the HTTP Application Service
 
 Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.111.
 
-Add the target information before the tenant application::
-
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
-
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 7,35,47
+   :emphasize-lines: 7,35,50
 
     {
         "class": "AS3",
@@ -109,7 +103,7 @@ Add the target information before the tenant application::
         "declaration": {
             "class": "ADC",
             "target": {
-                "hostname": "<hostname>"
+                "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
             },
             "schemaVersion": "3.7.0",
             "id": "isc-lab",
