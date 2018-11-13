@@ -73,6 +73,8 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 2. Add the below application service to the existing AS3 delcaration in the validator.
 Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
 
+|lab-2-1|
+
 .. code-block:: yaml
    :linenos:
    :emphasize-lines: 18,35,36
@@ -136,8 +138,6 @@ Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109
            }
        }
 
-3. Copy the AS3 Declaration into the AS3 public validator.
-
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
 4. Click on ``Format JSON`` on the top left.
@@ -145,8 +145,6 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 5. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 6. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
-
-|lab-2-1|
 
 7. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
