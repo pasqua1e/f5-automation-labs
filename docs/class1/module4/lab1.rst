@@ -337,7 +337,7 @@ Add the target information before the tenant application::
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 12,33,50,51
+   :emphasize-lines: 12,30,33,50,51
 
    {
        "class": "AS3",

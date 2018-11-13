@@ -8,11 +8,16 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 
 .. note:: Start with the previous AS3 Declaration from **lab 1 - Task 1**
 
-1. Copy below example of an AS3 Declaration into the AS3 public validator.
+1. Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110 in the AS3 Declaration
+and add the target information::
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 18,35,36,53,56
+   :emphasize-lines: 18,35,36
 
    "MyWebApp6": {
            "class": "Application",
@@ -65,27 +70,21 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
            "webcert": {
                "class": "Certificate",
                "certificate": {
-                   "bigip": "<cert>"
+                   "bigip": "/Common/default.crt"
                },
                "privateKey": {
-                   "bigip": "<key>"
+                   "bigip": "/Common/default.key"
                }
            }
        }
 
+2. Copy the AS3 Declaration into the AS3 public validator.
+
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
-2. Click on ``Format JSON`` on the top left.
+3. Click on ``Format JSON`` on the top left.
 
-3. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
-
-4. Now that the JSON is validated, let's add the traget (BIG-IP device)::
-
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
-
-Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
+4. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
