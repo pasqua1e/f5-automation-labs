@@ -1,6 +1,8 @@
 Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 ---------------------------------------------------
 
+Connect to the **Linux Jumphost** and open Chrome and Postman (wait ~2 minutes).
+
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
 Using Postman select ``BIG-IQ Token`` available in the Collections.
