@@ -6,7 +6,7 @@ Connect to the **Linux Jumphost** and open Chrome and Postman (wait ~2 minutes).
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
 Using Postman select ``BIG-IQ Token`` available in the Collections.
-Press Send. This, will save the token value as _f5_token. If you token expires, obtain a new token by resending the ``BIG-IQ Token``
+Press Send. This, will save the token value as _f5_token. If your token expires, obtain a new token by resending the ``BIG-IQ Token``
 
 |lab-1-1|
 
@@ -82,11 +82,11 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 2. Click on ``Format JSON`` on the top left.
 
-|lab-1-2|
-
 3. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-.. note:: Ignore the schemaVersion error asthe validastor of the schema of 3.6
+|lab-1-2|
+
+.. note:: Ignore the schemaVersion error. Note the schema validator is using AS3.6 and we are using AS3.7.
 
 4. Now that the JSON is validated, let's add the traget (BIG-IP device)::
 
@@ -95,14 +95,15 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
     },
 
 .. note:: The target BIG-IP is standalone but it could be configured as an HA pair.
-          If you want, configure the HA in auto-scync mode. Configure the BIG-IP cluster in BIG-IQ.
+          If you want, configure the HA in auto-sync mode. Configure the BIG-IP cluster in BIG-IQ.
           The target in this case can be either device.
 
 Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100 and 10.1.10.101.
 
 5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
+6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the AS3 declaration from the validator to the declaration body into Postman.
 
 7. POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    

@@ -66,9 +66,7 @@ The labs in the module will focus on the high level features in place to
 achieve full L4-7 automation.
 
 In this Module, we will provision **BIG-IQ 6.1** to deploy and modify the AS3
-declarations you learned about in Module 2 on a **per service basis** 
-(Reminder: AS3 is designed to handle a tenant configuration and not do service 
-per service configuration)
+declarations.
 
 The focus of Module 2 was to demonstrate application deployment directly on to the BIG-IP. 
 **BIG-IQ 6.1** will allow the administrator to build an interface and API for users based 
