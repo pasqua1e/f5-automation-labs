@@ -123,12 +123,15 @@ Copy/Paste the AS3 declaration from the validator to the declaration body into P
 
 |lab-1-3|
 
+Click on your Application, Properties > CONFIGURATION, look at AS3 Declaration.
+
+|lab-1-4|
+
+
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Repeat steps from Task 1 with the exmaple below.
-
-Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103 and 10.1.10.104.
 
 .. code-block:: yaml
    :linenos:
@@ -166,7 +169,7 @@ Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103
                    "serviceMain": {
                        "class": "Service_HTTPS",
                        "virtualAddresses": [
-                           "<virtual>"
+                           "10.1.20.101"
                        ],
                        "pool": "web_pool",
                        "profileAnalytics": {
@@ -183,8 +186,8 @@ Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node3>",
-                                   "<node4>"
+                                   "10.1.10.103",
+                                   "10.1.10.104"
                                ]
                            }
                        ]
@@ -215,8 +218,6 @@ Task 3 - HTTPS Application with Web Application Firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Repeat steps from Task 1 with  below example.
-
-Modify the Virtual Address to 10.1.20.102 and the serverAddresses to 10.1.10.105 and 10.1.10.106.
 
 Update the WAF policy with the policy available on BIG-IP::
 
@@ -260,7 +261,7 @@ Update the WAF policy with the policy available on BIG-IP::
                    "serviceMain": {
                        "class": "Service_HTTPS",
                        "virtualAddresses": [
-                           "<virtual>"
+                           "10.1.20.102"
                        ],
                        "pool": "web_pool",
                        "profileAnalytics": {
@@ -280,8 +281,8 @@ Update the WAF policy with the policy available on BIG-IP::
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node5>",
-                                   "<node6>"
+                                   "10.1.10.105",
+                                   "10.1.10.106"
                                ]
                            }
                        ]
@@ -316,12 +317,11 @@ Repeat steps from Task 1 with  below example.
 
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
-Modify the Generic virtual with something other than <generic_virtual>, Virtual Address to 10.1.20.103, 
-port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.108.
+Modify the Generic virtual with something other than <generic_virtual>.
 
 .. code-block:: yaml
    :linenos:
-   :emphasize-lines: 12,30,33,50,51
+   :emphasize-lines: 12,30,33,35,50,51
 
    {
        "class": "AS3",
@@ -355,7 +355,7 @@ port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.10
                    "<generic_virtual>": {
                        "class": "Service_Generic",
                        "virtualAddresses": [
-                           "<virtual>"
+                           "10.1.20.103"
                        ],
                        "virtualPort": 8080,
                        "pool": "web_pool",
@@ -372,8 +372,8 @@ port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.10
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node7>",
-                                   "<node8>"
+                                   "10.1.10.107",
+                                   "10.1.10.108"
                                ]
                            }
                        ]
@@ -388,4 +388,6 @@ port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.10
 .. |lab-1-2| image:: images/lab-1-2.png
    :scale: 80%
 .. |lab-1-3| image:: images/lab-1-3.png
+   :scale: 80%
+.. |lab-1-4| image:: images/lab-1-4.png
    :scale: 80%
