@@ -8,7 +8,7 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 
 .. note:: Start with the previous AS3 Declaration from **lab 1 - Task 1**
 
-#. Copy below example of an AS3 Declaration into the AS3 public validator.
+1. Copy below example of an AS3 Declaration into the AS3 public validator.
 
 .. code-block:: yaml
    :linenos:
@@ -75,11 +75,11 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
-#. Click on ``Format JSON`` on the top left.
+2. Click on ``Format JSON`` on the top left.
 
-#. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+3. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Now that the JSON is validated, let's add the traget (BIG-IP device)
+4. Now that the JSON is validated, let's add the traget (BIG-IP device)::
 
     "target": {
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
@@ -87,11 +87,11 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
 
-#. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 |lab-2-1|
 
-#. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
+6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 
@@ -103,7 +103,7 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-#. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
+7. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 
 .. |lab-2-1| image:: images/lab-2-1.png

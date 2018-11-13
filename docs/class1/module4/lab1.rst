@@ -13,7 +13,7 @@ Press Send. This, will save the token value as _f5_token. If you token expires, 
 Task 1 - HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Copy below example of an AS3 Declaration into the AS3 public validator.
+1. Copy below example of an AS3 Declaration into the AS3 validator. The AS3 validator is your IDE.
 
 .. code-block:: yaml
    :linenos:
@@ -80,15 +80,15 @@ Task 1 - HTTP Application Service
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.15:5000
 
-#. Click on ``Format JSON`` on the top left.
+2. Click on ``Format JSON`` on the top left.
 
 |lab-1-2|
 
-#. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+3. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 .. note:: Ignore the schemaVersion error asthe validastor of the schema of 3.6
 
-#. Now that the JSON is validated, let's add the traget (BIG-IP device)
+4. Now that the JSON is validated, let's add the traget (BIG-IP device)::
 
     "target": {
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
@@ -100,11 +100,11 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100 and 10.1.10.101.
 
-#. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
+6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
-#. POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+7. POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    This will give you an ID which you can query in the task section (as admin)
    
@@ -112,11 +112,11 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
-#. GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+8. GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-#. Logon on BIG-IP and verifiy the Application is correctly deployed.
+9. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
-#. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
+10. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-1-3|
 

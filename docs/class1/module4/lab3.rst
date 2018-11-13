@@ -4,7 +4,7 @@ Lab 4.3: Deploying AS3 Templates with BIG-IQ 6.1
 Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Using Postman, copy the below example of an AS3 Template into  **BIG-IQ AS3 Template Creation** collection.
+1. Using Postman, copy the below example of an AS3 Template into  **BIG-IQ AS3 Template Creation** collection.
     it will create a new template in BIG-IQ AS3 Service Catalogue.
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
@@ -60,7 +60,7 @@ Task 6 - Create custom HTTP AS3 Template on BIG-IQ
     }
 
 
-#. Logon on BIG-IQ, go to Application tab, then Application Templates. Look at the custom template created previous through the API.
+2. Logon on BIG-IQ, go to Application tab, then Application Templates. Look at the custom template created previous through the API.
 
 |lab-3-1|
 
@@ -72,7 +72,7 @@ You can see the Template in JSON format if you click on it.
 Task 7 - Admin set RBAC for Olivia on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, select **Applicator Creator AS3** 
+Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, select **Applicator Creator AS3** 
 and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list.
 
 |lab-3-3|
@@ -81,9 +81,9 @@ and the custom role linked to the custom HTTP template previously created. Remov
 Task 8 - As Olivia, deploy the HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
+1. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
 
-#. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
+2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
   
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 
@@ -168,9 +168,9 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
     GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 
-#. Logon on BIG-IP and verifiy the Application is correctly deployed.
+3. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
-#. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
+4. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-3-4|
 
