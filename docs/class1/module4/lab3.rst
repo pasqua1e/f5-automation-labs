@@ -9,15 +9,13 @@ Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
 
-.. note:: The field named “appSvcsClassConstraints” will be renamed to “schemaOverlay” in the next few days.
-
 .. code-block:: yaml
    :linenos:
 
     {
         "description": "",
         "name": "HTTPcustomTemplateTask6",
-        "appSvcsClassConstraints": {
+        "schemaOverlay": {
             "type": "object",
             "properties": {
                 "class": {},
@@ -71,22 +69,29 @@ You can see the Template in JSON format if you click on it.
 |lab-3-2|
 
 
-Task 7 - Olivia set RBAC for Paula on BIG-IQ
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Task 7 - Admin set RBAC for Olivia on BIG-IQ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Logon on BIG-IQ as Olivia, go to the System tab, Users, select Paula and assign her the custom role linked to the custom HTTP template previously created.
+#. Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, select **Applicator Creator AS3** 
+and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list.
 
 |lab-3-3|
 
 
-Task 8 - As Paula, deploy the HTTP Application Service
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Task 8 - As Olivia, deploy the HTTP Application Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Using Postman, copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
+#. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
+
+#. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order tocreate the service on the BIG-IP through BIG-IQ.
   
-   POST https://10.1.1.4/mgmt/shared/appsvcs/declare
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 
-Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.100 to 10.1.10.104.
+   This will give you an ID which you can query in the task section (as admin)
+   
+   https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
+
+Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.111.
 
 .. code-block:: yaml
    :linenos:
@@ -135,10 +140,13 @@ Modify the Virtual Address to 10.1.20.105 and the server Addresses from 10.1.10.
                     },
                     "pool_8": {
                         "class": "Pool",
+                        "monitors": [
+                            "http"
+                        ],
                         "members": [
                             {
                                 "serverAddresses": [
-                                    "<node1>"
+                                    "<node11>"
                                 ],
                                 "servicePort": 80
                             }
@@ -156,12 +164,15 @@ Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deploy
 
 #. Logon on BIG-IP and verifiy the Application is correctly deployed.
 
-#. Logon on BIG-IQ as Paula, go to Application tab and check the application is displayed and analytics are showing.
+#. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
+|lab-3-4|
 
 .. |lab-3-1| image:: images/lab-3-1.png
    :scale: 80%
 .. |lab-3-2| image:: images/lab-3-2.png
    :scale: 80%
 .. |lab-3-3| image:: images/lab-3-3.png
+   :scale: 60%
+.. |lab-3-4| image:: images/lab-3-4.png
    :scale: 60%

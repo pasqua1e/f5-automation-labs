@@ -67,8 +67,7 @@ Task 1 - HTTP Application Service
                                "serverAddresses": [
                                    "<node1>",
                                    "<node2>"
-                               ],
-                               "shareNodes": true
+                               ]
                            }
                        ]
                    }
@@ -77,7 +76,7 @@ Task 1 - HTTP Application Service
        }
    }
 
-To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
+To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.15:5000
 
 #. Click on ``Format JSON`` on the top left.
 
@@ -97,17 +96,15 @@ Add the target information before the tenant application::
           If you want, configure the HA in auto-scync mode. Configure the BIG-IP cluster in BIG-IQ.
           The target in this case can be either device.
 
-Modify the Virtual Address to 10.1.20.100 and the server Addresses from 10.1.10.100 to 10.1.10.104. Since nodes are getting shared accross partitions use the "shareNodes": true
+Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100 and 10.1.10.101.
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 #. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
-#. POST https://10.1.1.4/mgmt/shared/appsvcs/declare
-
-   .. note:: https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+#. POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
-   This will give you an ID which you can query in the task section
+   This will give you an ID which you can query in the task section (as admin)
    
    https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
 
@@ -126,7 +123,7 @@ Task 2 - HTTPS Offload
 
 Repeat steps from Task 1 with the exmaple below.
 
-Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103 and 10.1.10.104.
 
 .. code-block:: yaml
    :linenos:
@@ -181,10 +178,9 @@ Modify the Virtual Address to 10.1.20.101 and the server Addresses from 10.1.10.
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node1>",
-                                   "<node2>"
-                               ],
-                               "shareNodes": true
+                                   "<node3>",
+                                   "<node4>"
+                               ]
                            }
                        ]
                    },
@@ -215,7 +211,7 @@ Task 3 - HTTPS Application with Web Application Firewall
 
 Repeat steps from Task 1 with  below example.
 
-Modify the Virtual Address to 10.1.20.102 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.102 and the serverAddresses to 10.1.10.105 and 10.1.10.106.
 
 Update the WAF policy with the policy available on BIG-IP::
 
@@ -279,10 +275,9 @@ Update the WAF policy with the policy available on BIG-IP::
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node1>",
-                                   "<node2>"
-                               ],
-                               "shareNodes": true
+                                   "<node5>",
+                                   "<node6>"
+                               ]
                            }
                        ]
                    },
@@ -317,7 +312,7 @@ Repeat steps from Task 1 with  below example.
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
 Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, 
-port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.108.
 
 .. code-block:: yaml
    :linenos:
@@ -372,10 +367,9 @@ port 8080 and add the pool and the serverAddresses from 10.1.10.100 to 10.1.10.1
                            {
                                "servicePort": 80,
                                "serverAddresses": [
-                                   "<node1>",
-                                   "<node2>"
-                               ],
-                               "shareNodes": true
+                                   "<node7>",
+                                   "<node8>"
+                               ]
                            }
                        ]
                    }

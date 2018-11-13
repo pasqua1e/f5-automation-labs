@@ -48,10 +48,9 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
                    {
                        "servicePort": 80,
                        "serverAddresses": [
-                           "<node3>",
-                           "<node4>"
-                       ],
-                       "shareNodes": true
+                           "<node9>",
+                           "<node10>"
+                       ]
                    }
                ]
            },
@@ -82,7 +81,7 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 #. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
 
-Modify the Virtual Address to 10.1.20.104 and the serverAddresses from 10.1.10.100 to 10.1.10.104.
+Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
 
 #. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
@@ -90,7 +89,11 @@ Modify the Virtual Address to 10.1.20.104 and the serverAddresses from 10.1.10.1
 
 #. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
-   POST https://10.1.1.4/mgmt/shared/appsvcs/declare
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+
+   This will give you an ID which you can query in the task section (as admin)
+   
+   https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
