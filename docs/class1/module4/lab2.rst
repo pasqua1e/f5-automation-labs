@@ -6,14 +6,72 @@ Using the declarative AS3 API, let's modfiy the HTTP application created during 
 Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: Start with the previous AS3 Declaration from **lab 1 - Task 1**
+1. Start with the previous AS3 Declaration from **lab 1 - Task 1**
 
-1. Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110 in the AS3 Declaration
-and add the target information::
+.. code-block:: yaml
+   :linenos:
 
-    "target": {
-        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
-    },
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "example-declaration-01",
+           "label": "Task1",
+           "remark": "Task 1 - HTTP Application Service",
+           "target": {
+               "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+           },
+           "Task1": {
+               "class": "Tenant",
+               "MyWebApp1": {
+                   "class": "Application",
+                   "template": "http",
+                   "statsProfile": {
+                       "class": "Analytics_Profile",
+                       "collectedStatsInternalLogging": true,
+                       "collectedStatsExternalLogging": false,
+                       "capturedTrafficInternalLogging": false,
+                       "capturedTrafficExternalLogging": true,
+                       "collectPageLoadTime": true,
+                       "collectClientSideStatistics": true,
+                       "collectResponseCode": true,
+                       "sessionCookieSecurity": "ssl-only"
+                   },
+                   "serviceMain": {
+                       "class": "Service_HTTP",
+                       "virtualAddresses": [
+                           "10.1.20.100"
+                       ],
+                       "pool": "web_pool",
+                       "profileAnalytics": {
+                           "use": "statsProfile"
+                       }
+                   },
+                   "web_pool": {
+                       "class": "Pool",
+                       "monitors": [
+                           "http"
+                       ],
+                       "members": [
+                           {
+                               "servicePort": 80,
+                               "serverAddresses": [
+                                   "10.1.10.100",
+                                   "10.1.10.101"
+                               ]
+                           }
+                       ]
+                   }
+               }
+           }
+       }
+   }
+
+2. Add the below application service to the existing AS3 delcaration in the validator.
+Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
 
 .. code-block:: yaml
    :linenos:
@@ -78,19 +136,19 @@ and add the target information::
            }
        }
 
-2. Copy the AS3 Declaration into the AS3 public validator.
+3. Copy the AS3 Declaration into the AS3 public validator.
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
 
-3. Click on ``Format JSON`` on the top left.
+4. Click on ``Format JSON`` on the top left.
 
-4. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+5. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+6. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
 |lab-2-1|
 
-6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
+7. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman.
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
 
@@ -98,11 +156,11 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
    
    https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
 
-Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
+Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors.
 
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-7. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
+8. Logon on BIG-IQ as admin, go to Application tab and check the application is displayed and analytics are showing.
 
 
 .. |lab-2-1| image:: images/lab-2-1.png

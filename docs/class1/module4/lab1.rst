@@ -326,7 +326,7 @@ Repeat steps from Task 1 with  below example.
 
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
-Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, 
+Modify the Generic virtual with something other than <generic_virtual>, Virtual Address to 10.1.20.103, 
 port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.108.
 
 Add the target information before the tenant application::
