@@ -70,8 +70,10 @@ Task 5 - Add an HTTPS Application to existing HTTP AS3 Declaration
        }
    }
 
-2. Add the below application service to the existing AS3 delcaration in the validator.
+2. Add the below application service to the existing AS3 declaration in the validator.
 Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
+
+..note:: Add a **","** before the declaration of MyWebApp6.
 
 |lab-2-1|
 

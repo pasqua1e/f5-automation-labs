@@ -72,7 +72,9 @@ You can see the Template in JSON format if you click on it.
 Task 7 - Admin set RBAC for Olivia on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, select **Applicator Creator AS3** 
+Let's update now Oliva's service catalog.
+
+Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, CUSTOM ROLES, Application Roles, select **Applicator Creator AS3** 
 and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list.
 
 |lab-3-3|
@@ -161,9 +163,9 @@ POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-4. Logon on BIG-IP and verifiy the Application is correctly deployed.
+4. Logon on **BIG-IP A** and verify the Application is correctly deployed in partition Task8.
 
-5. Logon on BIG-IQ as Olivia, go to Application tab and check the application is displayed and analytics are showing.
+5. Logon on **BIG-IQ** as Olivia, go to Application tab and check the application is displayed and analytics are showing.
 
 |lab-3-4|
 

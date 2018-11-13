@@ -117,7 +117,7 @@ Copy/Paste the AS3 declaration from the validator to the declaration body into P
    
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
-8. Logon on **BIG-IP A** and verifiy the Application is correctly deployed (check partition Task1)
+8. Logon on **BIG-IP A** and verify the Application is correctly deployed in partition Task1.
 
 9. Logon on **BIG-IQ** as admin, go to Application tab and check the application is displayed and analytics are showing.
 
@@ -131,7 +131,14 @@ Click on your Application, Properties > CONFIGURATION, look at AS3 Declaration.
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Repeat steps from Task 1 with the exmaple below.
+Now we are going to create another service but this time SSL offload environment.
+
+1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the below AS3 declaration from the validator to the declaration body into Postman.
+
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+   
+   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
 
 .. code-block:: yaml
    :linenos:
@@ -214,10 +221,15 @@ Repeat steps from Task 1 with the exmaple below.
        }
    }
 
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+
+   GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
+   
+   GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+
+
 Task 3 - HTTPS Application with Web Application Firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Repeat steps from Task 1 with  below example.
 
 Update the WAF policy with the policy available on BIG-IP::
 
@@ -309,11 +321,22 @@ Update the WAF policy with the policy available on BIG-IP::
        }
    }
 
+1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman.
+
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+   
+   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
+
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+
+   GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
+   
+   GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
+
 
 Task 4 - Generic Services
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Repeat steps from Task 1 with  below example.
 
 .. note:: Note that because this declaration uses the generic template, the service does not have to be named serviceMain
 
@@ -382,6 +405,19 @@ Modify the Generic virtual with something other than <generic_virtual>.
            }
        }
    }
+
+1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman.
+
+   POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
+   
+   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
+
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+
+   GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
+   
+   GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
 .. |lab-1-1| image:: images/lab-1-1.png
    :scale: 80%
