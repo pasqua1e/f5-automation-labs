@@ -89,9 +89,15 @@ Task 8 - As Olivia, deploy the HTTP Application Service
 
    This will give you an ID which you can query in the task section (as admin)
    
-   https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
+   https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
 
 Modify the Virtual Address to 10.1.20.105 and the server Addresses to 10.1.10.111.
+
+Add the target information before the tenant application::
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 .. code-block:: yaml
    :linenos:

@@ -79,7 +79,11 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 #. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
+#. Now that the JSON is validated, let's add the traget (BIG-IP device)
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109 to 10.1.10.110.
 
@@ -93,7 +97,7 @@ Modify the Virtual Address to 10.1.20.104 and the serverAddresses to 10.1.10.109
 
    This will give you an ID which you can query in the task section (as admin)
    
-   https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
+   https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 

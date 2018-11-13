@@ -3,7 +3,7 @@ Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
-#. Using Postman select ``BIG-IQ Token`` available in the Collections.
+Using Postman select ``BIG-IQ Token`` available in the Collections.
 Press Send. This, will save the token value as _f5_token. If you token expires, obtain a new token by resending the ``BIG-IQ Token``
 
 |lab-1-1|
@@ -84,9 +84,9 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 #. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-#. Now that the JSON is validated, let's add the targetHost (BIG-IQ) and the traget (BIG-IP device)
+.. note:: Ignore the schemaVersion error asthe validastor of the schema of 3.6
 
-Add the target information before the tenant application::
+#. Now that the JSON is validated, let's add the traget (BIG-IP device)
 
     "target": {
         "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
@@ -106,7 +106,7 @@ Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100
    
    This will give you an ID which you can query in the task section (as admin)
    
-   https://10.1.1.4/mgmt/shared/appsvcs/task/4ad9a50c-d3f6-4110-a26d-e7e100e38da9
+   https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
 
 Use the **BIG-IQ Check AS3 deployment** collection to ensure that the AS3 deployment is successfull without errors: 
 
@@ -124,6 +124,12 @@ Task 2 - HTTPS Offload
 Repeat steps from Task 1 with the exmaple below.
 
 Modify the Virtual Address to 10.1.20.101 and the serverAddresses to 10.1.10.103 and 10.1.10.104.
+
+Add the target information before the tenant application::
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 .. code-block:: yaml
    :linenos:
@@ -212,6 +218,12 @@ Task 3 - HTTPS Application with Web Application Firewall
 Repeat steps from Task 1 with  below example.
 
 Modify the Virtual Address to 10.1.20.102 and the serverAddresses to 10.1.10.105 and 10.1.10.106.
+
+Add the target information before the tenant application::
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 Update the WAF policy with the policy available on BIG-IP::
 
@@ -313,6 +325,12 @@ Repeat steps from Task 1 with  below example.
 
 Modify the Generic virtual with something other than ServiceMain, Virtual Address to 10.1.20.103, 
 port 8080 and add the pool and the serverAddresses to 10.1.10.107 and 10.1.10.108.
+
+Add the target information before the tenant application::
+
+    "target": {
+        "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+    },
 
 .. code-block:: yaml
    :linenos:
