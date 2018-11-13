@@ -170,6 +170,37 @@ This will give you an ID which you can query using the **BIG-IQ Check AS3 Deploy
 
 |lab-3-4|
 
+
+Task 9 - Delete Task1 and Task 2 AS3 Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use below AS3 declaration to delete couple of the application previoulsy created.
+
+.. code-block:: yaml
+   :linenos:
+
+   {
+       "class": "AS3",
+       "action": "deploy",
+       "persist": true,
+       "declaration": {
+           "class": "ADC",
+           "schemaVersion": "3.7.0",
+           "id": "example-declaration-01",
+           "label": "Task1",
+           "remark": "Task 1 - HTTP Application Service",
+           "target": {
+               "hostname": "ip-10-1-1-10.us-west-2.compute.internal"
+           },
+           "Task1": {
+               "class": "Tenant"
+           },
+           "Task2": {
+               "class": "Tenant"
+           }
+       }
+   }
+
 .. |lab-3-1| image:: images/lab-3-1.png
    :scale: 60%
 .. |lab-3-2| image:: images/lab-3-2.png

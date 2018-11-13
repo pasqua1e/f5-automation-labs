@@ -15,6 +15,8 @@ Press Send. This, will save the token value as _f5_token. If your token expires,
 Task 1 - HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+This declaration will create an HTTP application on BIG-IQ using an HTTP template. This declaration abstracts the complexity of having to configure all the HTTP defaults such as cookies, persistance, etc...
+
 1. Copy below example of an AS3 Declaration into the AS3 validator. The AS3 validator is your IDE.
 
 .. code-block:: yaml
@@ -229,6 +231,8 @@ Copy/Paste the below AS3 declaration from the validator to the declaration body 
 
 Task 3 - HTTPS Application with Web Application Firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This declaration will create an HTTP application on BIG-IQ using an HTTP template.
 
 Update the WAF policy with the policy available on BIG-IP::
 
