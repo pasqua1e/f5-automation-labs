@@ -155,7 +155,7 @@ POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
     }
 
   
-   This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**.
+This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**.
 
 3. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
 
