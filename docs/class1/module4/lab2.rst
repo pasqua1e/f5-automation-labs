@@ -74,7 +74,7 @@ This declaration will create add a HTTPS application to a exsisting HTTP applica
 
 2. Add the below application service to the existing AS3 declaration in the validator.
 
-..note:: Add a **","** before the declaration of MyWebApp6.
+.. note:: Add a **","** before the declaration of MyWebApp6.
 
 |lab-2-1|
 
