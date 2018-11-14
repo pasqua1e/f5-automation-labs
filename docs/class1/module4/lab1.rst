@@ -139,10 +139,10 @@ Click on your Application, Properties > CONFIGURATION, look at AS3 Declaration.
 Task 2 - HTTPS Offload
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Now we are going to create another service but this time SSL offload environment.
+Now we are going to create another service but this time, we will do some SSL offloading.
 
 1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the below AS3 declaration from the validator to the declaration body into Postman:
+Copy/Paste the below AS3 declaration into the body (Postman):
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
@@ -228,7 +228,7 @@ Copy/Paste the below AS3 declaration from the validator to the declaration body 
        }
    }
 
-2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** calls to ensure that the AS3 deployment is successfull without errors: 
 
    GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
@@ -238,9 +238,9 @@ Copy/Paste the below AS3 declaration from the validator to the declaration body 
 Task 3 - HTTPS Application with Web Application Firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This declaration will create an HTTP application on BIG-IQ using an HTTP template.
+This declaration will create an HTTP application on BIG-IQ using an HTTP template and a WAF policy.
 
-Update the WAF policy with the policy available on BIG-IP::
+Update the WAF policy section below with the policy available on BIG-IP::
 
  "policyWAF": {
           "bigip": "/Common/linux-high"
@@ -330,14 +330,14 @@ Update the WAF policy with the policy available on BIG-IP::
        }
    }
 
-1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman:
+1. Using Postman, use the **BIG-IQ AS3 Declaration** call in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the above AS3 declaration into the declaration body into Postman(DON T FORGET TO UPDATE THE WAF Policy):
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
 
-2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** Postman calls to ensure that the AS3 deployment is successfull without errors: 
 
    GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
