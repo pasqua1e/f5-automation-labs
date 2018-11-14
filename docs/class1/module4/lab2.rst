@@ -74,7 +74,10 @@ This declaration will create add a HTTPS application to a exsisting HTTP applica
 
 2. Add the below application service to the existing AS3 declaration in the validator.
 
-.. note:: Add a **","** before the declaration of MyWebApp6.
+.. note:: Add a **","** at the end of the MyWebApp1 statement.
+    If you want to "minimize" MyWebApp1 statement (like in the screenshot below), click on the tiny down arrow on the left of this line
+
+
 
 |lab-2-1|
 
@@ -140,7 +143,7 @@ This declaration will create add a HTTPS application to a exsisting HTTP applica
            }
        }
 
-To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000
+If you have issues, use the AS3 public validator (go to the Linux Jumphost, open a browser and connect to http://10.1.1.14:5000):
 
 4. Click on ``Format JSON`` on the top left.
 
@@ -148,13 +151,13 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 
 6. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
 
-7. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman:
+7. Using Postman, use the **BIG-IQ AS3 Declaration** Postman call in order to create the service on the BIG-IP through BIG-IQ. Copy/Past the declaration into Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
 
-8. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+8. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** calls to ensure that the AS3 deployment is successfull without errors: 
 
    GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
