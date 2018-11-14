@@ -415,14 +415,14 @@ Modify the Generic virtual with something other than <generic_virtual>.
        }
    }
 
-1. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
-Copy/Paste the above AS3 declaration from the validator to the declaration body into Postman:
+1. Using Postman, use the **BIG-IQ AS3 Declaration** call in order to create the service on the BIG-IP through BIG-IQ.
+Copy/Paste the above AS3 declaration into the declaration body of Postman:
 
    POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
    
    This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**
 
-2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+2. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** calls to ensure that the AS3 deployment is successfull without errors: 
 
    GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
