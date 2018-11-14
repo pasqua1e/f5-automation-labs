@@ -123,6 +123,8 @@ Copy/Paste the AS3 declaration from the validator to the declaration body into P
    
    GET https://10.1.1.4/mgmt/cm/global/tasks/deploy-app-service
 
+.. note:: notice that the app deployment may take a few minutes.
+
 8. Logon on **BIG-IP A** and verify the Application is correctly deployed in partition Task1.
 
 9. Logon on **BIG-IQ** as admin, go to Application tab and check the application is displayed and analytics are showing.
