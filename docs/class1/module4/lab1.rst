@@ -3,6 +3,9 @@ Lab 4.1: Sending AS3 declaration through BIG-IQ 6.1
 
 Connect to the **Linux Jumphost** and open Chrome and Postman (wait ~2 minutes).
 
+.. note:: When you log in, you may have a "strange" login screen. Click on the LEFT grey button
+    |lab-1-5|
+
 Using the declarative AS3 API, let's send the following BIG-IP configuration through BIG-IQ:
 
 Using Postman select ``BIG-IQ Token`` available in the Collections.
@@ -84,13 +87,12 @@ This declaration will create an HTTP application on BIG-IQ using an HTTP templat
 
 To access to the AS3 public validator, go to the Linux Jumphost, open a browser and connect to http://10.1.1.15:5000
 
-2. Click on ``Format JSON`` on the top left.
+2. Click on ``Format JSON`` on the top left ("hamburger"-like button).
 
-3. Click on ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+3. Click on ``Validate JSON`` . Make sure the Declaration is valid!
 
 |lab-1-2|
 
-.. note:: Ignore the schemaVersion error. Note the schema validator is using AS3.6 and we are using AS3.7.
 
 4. Now that the JSON is validated, let's add the target (BIG-IP device)::
 
@@ -105,6 +107,8 @@ To access to the AS3 public validator, go to the Linux Jumphost, open a browser 
 Modify the Virtual Address to 10.1.20.100 and the serverAddresses to 10.1.10.100 and 10.1.10.101.
 
 5. Click on  ``Format JSON``, ``Validate JSON`` and ``Validate AS3 Declaration``. Make sure the Declaration is valid!
+
+.. note:: Ignore the schemaVersion error. Note the schema validator is using AS3.6 and we are using AS3.7.
 
 6. Using Postman, use the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ.
 Copy/Paste the AS3 declaration from the validator to the declaration body into Postman:
@@ -429,4 +433,6 @@ Copy/Paste the above AS3 declaration from the validator to the declaration body 
 .. |lab-1-3| image:: images/lab-1-3.png
    :scale: 80%
 .. |lab-1-4| image:: images/lab-1-4.png
+   :scale: 80%
+.. |lab-1-5| image:: images/lab-1-5.png
    :scale: 80%
