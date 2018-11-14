@@ -76,8 +76,7 @@ Task 7 - Admin set RBAC for Olivia on BIG-IQ
 
 Let's update now Oliva's service catalog.
 
-Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, CUSTOM ROLES, Application Roles, select **Applicator Creator AS3** 
-and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list. 
+Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, CUSTOM ROLES, Application Roles, select **Applicator Creator AS3** and in the **AS3 Templates** section, select the custom HTTP template previously created. Remove the **default** template from the allowed list. 
 Click **Save & Close**.
 
 |lab-3-3|
