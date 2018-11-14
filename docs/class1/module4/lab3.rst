@@ -4,7 +4,7 @@ Lab 4.3: Deploying AS3 Templates with BIG-IQ 6.1
 Task 6 - Create custom HTTP AS3 Template on BIG-IQ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Copy the below example of an AS3 Template into the Postman **BIG-IQ AS3 Template Creation** collection.
+1. Copy the below example of an AS3 service template into the Postman **BIG-IQ AS3 Template Creation** call.
 It will create a new template in BIG-IQ AS3 Service Catalogue:
 
     POST https://10.1.1.4/mgmt/cm/global/appsvcs-templates
@@ -77,7 +77,8 @@ Task 7 - Admin set RBAC for Olivia on BIG-IQ
 Let's update now Oliva's service catalog.
 
 Logon on BIG-IQ as admin go to the System tab, Role Management, Roles, CUSTOM ROLES, Application Roles, select **Applicator Creator AS3** 
-and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list.
+and the custom role linked to the custom HTTP template previously created. Remove the **default** template from the allowed list. 
+Click **Save & Close**.
 
 |lab-3-3|
 
@@ -85,7 +86,7 @@ and the custom role linked to the custom HTTP template previously created. Remov
 Task 8 - As Olivia, deploy the HTTP Application Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** collection.
+1. Using Postman, update the user to olivia/olivia in the **BIG-IQ Token** call (body).
 
 2. Copy below example of an AS3 Declaration into the body of the **BIG-IQ AS3 Declaration** collection in order to create the service on the BIG-IP through BIG-IQ:
 
@@ -158,7 +159,7 @@ POST https://10.1.1.4/mgmt/shared/appsvcs/declare?async=true
   
 This will give you an ID which you can query using the **BIG-IQ Check AS3 Deployment Task**.
 
-3. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** collections to ensure that the AS3 deployment is successfull without errors: 
+3. Use the **BIG-IQ Check AS3 Deployment Task** and **BIG-IQ Check AS3 Deployment** Postman calls to ensure that the AS3 deployment is successfull without errors: 
 
    GET https://10.1.1.4/mgmt/shared/appsvcs/task/<id>
    
@@ -200,6 +201,9 @@ Use below AS3 declaration to delete couple of the application previoulsy created
            }
        }
    }
+
+Here, we empty the tenants/partitions: Task1 and Task2. This should remove those partitions from BIG-IP A. The relevant Apps 
+should also disappear from BIG-IQ. 
 
 .. |lab-3-1| image:: images/lab-3-1.png
    :scale: 60%
