@@ -6,7 +6,7 @@
         "serviceMain": {
             "class": "Service_HTTP",
             "virtualAddresses": [
-                "{{virtual_addr}}"
+                "{{ virtual_ip }}"
             ],
             "pool": "web_pool"
         },
