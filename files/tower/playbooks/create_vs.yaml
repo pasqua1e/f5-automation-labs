@@ -10,7 +10,9 @@
     virtual_addr: "{{ virtual_ip }}"
 
   tasks:
-
+  - debug:
+      msg: "virtual_addr = {{ virtual_addr }}"
+      msg: "virtual_ip = {{ virtual_ip }}"
     ##### AS3 POST ##### 
   - name: URI POST Tenant
     uri:
