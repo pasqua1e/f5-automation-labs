@@ -6,7 +6,7 @@
         "serviceMain": {
             "class": "Service_HTTP",
             "virtualAddresses": [
-                "(lookup('vars', virtual_addr))"
+                "lookup('vars', virtual_addr)"
             ],
             "pool": "web_pool"
         },
