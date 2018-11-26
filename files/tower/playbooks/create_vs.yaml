@@ -11,8 +11,8 @@
 
   tasks:
   - debug:
-      msg: "virtual_addr = {{ virtual_addr }}"
-      msg: "virtual_ip = {{ virtual_ip }}"
+      msg: "virtual_addr = {{ virtual_addr }} and virtual_ip = {{ virtual_ip }}"
+      
     ##### AS3 POST ##### 
   - name: URI POST Tenant
     uri:
