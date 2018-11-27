@@ -7,7 +7,7 @@
 			"class": "Service_UDP",
 			"virtualPort": 53,
 			"virtualAddresses": [
-				"10.1.20.121"
+				"{{virtual_ip}}"
 			],
 			"pool": "Pool1"
 		},
