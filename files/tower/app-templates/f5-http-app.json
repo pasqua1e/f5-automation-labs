@@ -18,8 +18,8 @@
             "members": [{
                 "servicePort": 8001,
                 "serverAddresses": [
-                    "10.1.10.100",
-                    "10.1.10.101"
+                    "{{ pool_mem_1 }}",
+                    "{{ pool_mem_2 }}"
                 ]
             }]
         }
