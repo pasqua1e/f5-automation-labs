@@ -6,12 +6,15 @@
     
   vars:
     virtual_addr: "{{ virtual_ip }}"
-    tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
     uri_method: "POST"
 
   tasks:
+  - set_fact:
+     tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
+  
   - debug:
       msg: "virtual_addr = {{ virtual_addr }} and virtual_ip = {{ virtual_ip }} and tenant_body = {{tenant_body}}"
+ 
       
     ##### AS3 POST ##### 
   - name: URI POST Tenant
