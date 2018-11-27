@@ -13,7 +13,7 @@
      tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
   
   
-    ##### AS3 POST ##### 
+    ### AS3 POST ###
   - name: URI POST Tenant
     uri:
        url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
