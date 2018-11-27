@@ -5,9 +5,9 @@
   connection: local
     
   vars:
+    virtual_addr: "{{ virtual_ip }}"
     tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
     uri_method: "POST"
-    virtual_addr: "{{ virtual_ip }}"
 
   tasks:
   - debug:
