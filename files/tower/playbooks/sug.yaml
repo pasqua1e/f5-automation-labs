@@ -1,5 +1,5 @@
 ---
-- name: Create VS
+- name: Create VS SUG
   hosts: bigip
   gather_facts: false
   connection: local
@@ -28,7 +28,7 @@
                         "Application_1": {
                             "class": "Application",
                             "template": "http",
-                        "serviceMain": {
+                          "serviceMain": {
                             "class": "Service_HTTP",
                             "virtualAddresses": [
                                 "{{ virtual_ip }}"
@@ -51,7 +51,8 @@
                                 ]
                             }
                         }
+                      }
                     }
+                  }
                 }
-        }
   body_format: json
