@@ -5,54 +5,54 @@
   connection: local
   tasks: 
   - name: URI POST Tenant
-      uri:
-        url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
-        method: POST
-        user: "admin"
-        password: "admin"
-        validate_certs: no
-        body: {
-                "class": "AS3",
-                "action": "deploy",
-                "persist": true,
-                "declaration": {
-                    "class": "ADC",
-                    "schemaVersion": "3.0.0",
-                    "id": "ansible-declaration-01",
-                    "label": "Sample 1",
-                    "remark": "Simple HTTP application with round robin pool",
-                    "updateMode": "selective",
-                    "{{ tenant }}": {
-                        "class": "Tenant",
-                        "defaultRouteDomain": 0,
-                        "Application_1": {
-                            "class": "Application",
-                            "template": "http",
-                          "serviceMain": {
-                            "class": "Service_HTTP",
-                            "virtualAddresses": [
-                                "{{ virtual_ip }}"
-                            ],
-                            "pool": "web_pool"
-                            },
-                            "web_pool": {
-                                "class": "Pool",
-                                "monitors": [
-                                    "http"
-                                ],
-                                "members": [
-                                    {
-                                        "servicePort": 80,
-                                        "serverAddresses": [
-                                            "{{ pool_mem_1 }}",
-                                            "{{ pool_mem_2 }}"
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
+    uri:
+      url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
+      method: POST
+      user: "admin"
+      password: "admin"
+      validate_certs: no
+      body: {
+              "class": "AS3",
+              "action": "deploy",
+              "persist": true,
+              "declaration": {
+                  "class": "ADC",
+                  "schemaVersion": "3.0.0",
+                  "id": "ansible-declaration-01",
+                  "label": "Sample 1",
+                  "remark": "Simple HTTP application with round robin pool",
+                  "updateMode": "selective",
+                  "{{ tenant }}": {
+                      "class": "Tenant",
+                      "defaultRouteDomain": 0,
+                      "Application_1": {
+                          "class": "Application",
+                          "template": "http",
+                        "serviceMain": {
+                          "class": "Service_HTTP",
+                          "virtualAddresses": [
+                              "{{ virtual_ip }}"
+                          ],
+                          "pool": "web_pool"
+                          },
+                          "web_pool": {
+                              "class": "Pool",
+                              "monitors": [
+                                  "http"
+                              ],
+                              "members": [
+                                  {
+                                      "servicePort": 80,
+                                      "serverAddresses": [
+                                          "{{ pool_mem_1 }}",
+                                          "{{ pool_mem_2 }}"
+                                      ]
+                                  }
+                              ]
+                          }
                       }
                     }
                   }
                 }
+              }
   body_format: json
