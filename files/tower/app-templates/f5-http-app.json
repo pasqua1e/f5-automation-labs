@@ -1,6 +1,6 @@
  {
     "class": "Tenant",
-    "A1": {
+    "Ansible_App_1": {
         "class": "Application",
         "template": "http",
         "serviceMain": {
