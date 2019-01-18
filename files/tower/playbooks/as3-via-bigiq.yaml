@@ -1,12 +1,12 @@
 ---
-- name: Create VS SUG
+- name: Create VS via BIG-IQ
   hosts: bigip
   gather_facts: false
   connection: local
   tasks: 
   - name: URI POST Tenant
     uri:
-      url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
+      url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
       method: POST
       user: "admin"
       password: "admin"
