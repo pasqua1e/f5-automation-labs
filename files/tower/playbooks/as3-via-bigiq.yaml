@@ -22,7 +22,7 @@
                   "label": "Sample 1",
                   "remark": "Simple HTTP application with round robin pool",
                   "target": {
-                      "hostname": "SEA-vBIGIP01.termmarc.com"
+                      "hostname": "{{ dest_big_ip }}"
                   },
                   "updateMode": "selective",
                   "{{ tenant }}": {
