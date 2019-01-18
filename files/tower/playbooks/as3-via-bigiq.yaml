@@ -1,5 +1,5 @@
 ---
-- name: Create VS via BIG-IQ
+- name: Create VS
   hosts: bigip
   gather_facts: false
   connection: local
