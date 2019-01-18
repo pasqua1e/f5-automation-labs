@@ -1,0 +1,63 @@
+---
+- name: Create VS AS3 BIGIQ
+  hosts: bigip
+  gather_facts: false
+  connection: local
+  tasks: 
+  - name: URI POST Tenant
+    uri:
+      url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
+      method: POST
+      user: "{{ ANSIBLE_NET_USERNAME }}"
+      password: "{{ ANSIBLE_NET_PASSWORD }}"
+      validate_certs: no
+      body: {
+         "class": "AS3",
+         "declaration": {
+            "class": "ADC",
+            "schemaVersion": "3.0.0",
+            "id": "fghijkl7890",
+            "label": "Sample 1",
+            "remark": "HTTP with custom persistence",
+            "target": {
+                  "hostname": "SEA-vBIGIP01.termmarc.com"
+            },
+            "Sample_http_01": {
+                  "class": "Tenant",
+                  "A1": {
+                     "class": "Application",
+                     "template": "http",
+                     "serviceMain": {
+                        "class": "Service_HTTP",
+                        "virtualAddresses": [
+                              "10.0.2.10"
+                        ],
+                        "pool": "web_pool",
+                        "persistenceMethods": [{
+                              "use": "jsessionid"
+                        }]
+                     },
+                     "web_pool": {
+                        "class": "Pool",
+                        "monitors": [
+                              "http"
+                        ],
+                        "members": [{
+                        "servicePort": 80,
+                        "serverAddresses": [
+                              "10.1.20.115"
+                        ]
+                        }]
+                     },
+                     "jsessionid": {
+                        "class": "Persist",
+                        "persistenceMethod": "cookie",
+                        "cookieMethod": "hash",
+                        "cookieName": "JSESSIONID"
+                     }
+                  }
+            }
+         }
+      }
+              
+  body_format: json
