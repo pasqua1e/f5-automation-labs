@@ -21,6 +21,9 @@
                   "id": "ansible-declaration-01",
                   "label": "Sample 1",
                   "remark": "Simple HTTP application with round robin pool",
+                  "target": {
+                      "hostname": "SEA-vBIGIP01.termmarc.com"
+                  },
                   "updateMode": "selective",
                   "{{ tenant }}": {
                       "class": "Tenant",
