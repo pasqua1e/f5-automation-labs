@@ -8,8 +8,8 @@
     uri:
       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
       method: POST
-      user: "admin"
-      password: "admin"
+      user: "{{ big_iq_user }}"
+      password: "{{ big_iq_pass }}"
       validate_certs: no
       body: {
               "class": "AS3",
