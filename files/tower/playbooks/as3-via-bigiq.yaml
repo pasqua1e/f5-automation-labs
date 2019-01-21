@@ -3,59 +3,23 @@
   hosts: bigip
   gather_facts: false
   connection: local
-  tasks: 
+    
+  vars:
+    uri_method: "POST"
+
+  tasks:
+  
+  - set_fact:
+     tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
+   
+    ### AS3 POST ###
   - name: URI POST Tenant
     uri:
-      url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
-      method: POST
-      user: "{{ ANSIBLE_NET_USERNAME }}"
-      password: "{{ ANSIBLE_NET_PASSWORD }}"
-      validate_certs: no
-      body: {
-              "class": "AS3",
-              "action": "deploy",
-              "persist": true,
-              "declaration": {
-                  "class": "ADC",
-                  "schemaVersion": "3.0.0",
-                  "id": "ansible-declaration-01",
-                  "label": "Sample 1",
-                  "remark": "Simple HTTP application with round robin pool",
-                  "target": {
-                      "hostname": "{{ dest_big_ip }}"
-                  },
-                  "updateMode": "selective",
-                  "{{ tenant }}": {
-                      "class": "Tenant",
-                      "defaultRouteDomain": 0,
-                      "Application_1": {
-                          "class": "Application",
-                          "template": "http",
-                        "serviceMain": {
-                          "class": "Service_HTTP",
-                          "virtualAddresses": [
-                              "{{ virtual_ip }}"
-                          ],
-                          "pool": "web_pool"
-                          },
-                          "web_pool": {
-                              "class": "Pool",
-                              "monitors": [
-                                  "http"
-                              ],
-                              "members": [
-                                  {
-                                      "servicePort": 80,
-                                      "serverAddresses": [
-                                          "{{ pool_mem_1 }}",
-                                          "{{ pool_mem_2 }}"
-                                      ]
-                                  }
-                              ]
-                          }
-                      }
-                    }
-                  }
-                }
-              
-  body_format: json
+       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
+       method: "{{ uri_method }}"
+       user: "admin"
+       password: "admin"
+       validate_certs: no
+       body: "{{ lookup('template', '../j2/tenant_base_iq.j2') }}"
+       body_format: json
+
