@@ -16,7 +16,7 @@
                 "http"
             ],
             "members": [{
-                "servicePort": 8001,
+                "servicePort": 80,
                 "serverAddresses": [
                     "{{ pool_mem_1 }}",
                     "{{ pool_mem_2 }}"
