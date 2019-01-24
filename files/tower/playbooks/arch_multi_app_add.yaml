@@ -1,0 +1,76 @@
+---
+- name: Append new app to tenant
+  #  hosts: bigip     # this works on tower
+  hosts: localhost
+  gather_facts: false
+  connection: local
+    
+  vars:
+    uri_method: "POST"
+    # temp vars for local testing only - these will come from tower
+    tenant: "foo"
+    tower_tenant: "stuff_goes_here"
+
+  tasks:
+
+  - name: get existing tenant vars
+    include_vars:
+      file: '../tenant-config/{{ tenant }}.yaml'
+
+  - name: render template
+    set_fact:
+      tenant_body: "{{ lookup('template', '../j2/multi_app_macro.j2', split_lines=False) }}"
+
+  - name: test
+    debug:
+      msg: "{{ vars }}"
+
+
+#  - name: update tenant
+#    set_fact:
+#      tenant: '{{ tenant | union(tower_tenant) }}'
+  
+#  - name: write new vars
+#    copy:
+#      content: '{{ tenant | to_nice_yaml() }}'
+#      dest: '../tenant-config/{{ tenant }}.yaml'
+  
+  #- name: update repo
+  #  shell: git commit -a -m 'update {{ tenant }}'
+  
+  #- name: update repo
+  #  shell: git push
+  
+#  - name: build as3 json
+#    template:
+#      src: template/as3_builder.json
+#      dest: /tmp/my_as3.json
+  
+#  - name: build as3 json nicely tabbed
+#    copy:
+#      content: '{{ lookup("template", "as3_builder.json") | to_nice_json() }}'
+#      dest: /tmp/my_as3.json
+
+
+
+
+
+    #### AS3 POST ####
+  - name: URI POST Tenant
+    uri:
+       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
+       method: "{{ uri_method }}"
+       user: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+       password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+       validate_certs: no
+       body: "{{ lookup('template', '../j2/arch_multi_app_macro.j2') }}"
+       body_format: json
+       #### DEBUG ####
+       #debug:
+       #  msg: "{{ lookup('template', '../j2/arch_multi_app_macro.j2') }}"
+
+    
+
+
+
+ 

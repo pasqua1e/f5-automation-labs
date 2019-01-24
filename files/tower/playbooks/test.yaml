@@ -1,0 +1,17 @@
+---
+- name: name
+  hosts: localhost
+  gather_facts: false
+  connection: local
+    
+  vars:
+    foo: "bar"
+    bar: "foo"
+  
+  tasks:
+  - name: test
+    debug:
+      msg: "{{ foo }}"
+
+ 
+
