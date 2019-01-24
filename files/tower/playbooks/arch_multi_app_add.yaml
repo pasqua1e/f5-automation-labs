@@ -65,9 +65,7 @@
        validate_certs: no
        body: "{{ lookup('template', '../j2/arch_multi_app_macro.j2') }}"
        body_format: json
-       #### DEBUG ####
-       #debug:
-       #  msg: "{{ lookup('template', '../j2/arch_multi_app_macro.j2') }}"
+
 
     
 
