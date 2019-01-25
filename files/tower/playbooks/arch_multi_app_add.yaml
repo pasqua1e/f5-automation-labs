@@ -71,22 +71,9 @@
   - name: update repo
     shell: git commit -a -m 'update ../tenant-config/{{tenant}}.yaml'
   
-  #- name: update repo
-  #  shell: git push
+  - name: update repo
+    shell: git push
   
-#  - name: build as3 json
-#    template:
-#      src: template/as3_builder.json
-#      dest: /tmp/my_as3.json
-  
-#  - name: build as3 json nicely tabbed
-#    copy:
-#      content: '{{ lookup("template", "as3_builder.json") | to_nice_json() }}'
-#      dest: /tmp/my_as3.json
-
-
-
-
 
     #### AS3 POST ####
   - name: URI POST Tenant
