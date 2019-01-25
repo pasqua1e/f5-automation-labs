@@ -65,10 +65,9 @@
                 }
             ]
         },
-        "TLS_KeyPair": {
+        "{{ app.name }}_key_pair": {
             "class": "Certificate",
             "certificate": "{{ app.certificate }}",
-            "chainCA": "{{ app.chain_ca }}",
             "privateKey": "{{ app.private_key }}"
         }
     }
@@ -92,7 +91,7 @@
         "remark": "test-remark",
         "{{ tenant }}": {
             "class": "Tenant",
-            {% for app in applications %}
+            {% for app in new_applications %}
                 {{ render_app(app) }}
                     {% if not loop.last %}
                         ,
