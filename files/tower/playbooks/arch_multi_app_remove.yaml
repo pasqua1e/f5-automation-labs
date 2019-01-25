@@ -33,7 +33,7 @@
 
   - name: merge new_app into existing tenant apps
     set_fact:
-      new_applications: '{{ applications | union(format_new_app) }}'
+      new_applications: '{{ applications | difference(format_new_app) }}'
   
   - name: get number of existing + new apps in tenant 
     set_fact:
@@ -62,13 +62,12 @@
       content: "{{ { 'applications': new_applications } | to_nice_yaml() }}"
       dest: '../tenant-config/{{tenant}}.yaml'
   
-  - name: update repo
+  - name: update repo (source of truth)
     shell: git commit -a -m 'update ../tenant-config/{{tenant}}.yaml'
   
-  - name: update repo
+  - name: update repo (source of truth)
     shell: git push
   
-
     #### AS3 POST ####
   - name: URI POST Tenant
     uri:
@@ -84,3 +83,10 @@
        validate_certs: no
        body: "{{ tenant_body }}"
        body_format: json
+
+
+    
+
+
+
+ 
