@@ -1,6 +1,6 @@
 ---
 - name: Create VS
-  hosts: 10.1.1.5
+  hosts: all
   gather_facts: false
   connection: local
     
