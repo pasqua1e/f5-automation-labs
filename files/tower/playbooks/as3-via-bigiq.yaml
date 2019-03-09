@@ -1,6 +1,6 @@
 ---
 - name: Create VS
-  hosts: bigiq
+  hosts: all
   gather_facts: false
   connection: local
     
