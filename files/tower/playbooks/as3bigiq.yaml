@@ -8,8 +8,8 @@
     uri:
       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
       method: POST
-      user: "{{ ANSIBLE_NET_USERNAME }}"
-      password: "{{ ANSIBLE_NET_PASSWORD }}"
+      user: "{{ pasq_user }}"
+      password: "{{ pasq_password }}"
       validate_certs: no
       body: {
          "class": "AS3",
@@ -20,7 +20,7 @@
             "label": "Sample 1",
             "remark": "HTTP with custom persistence",
             "target": {
-                  "hostname": "SEA-vBIGIP01.termmarc.com"
+                  "hostname": "ip-10-1-1-6.us-west-2.compute.internal"
             },
             "Sample_http_01": {
                   "class": "Tenant",
