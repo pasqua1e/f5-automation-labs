@@ -30,7 +30,7 @@
                      "serviceMain": {
                         "class": "Service_HTTP",
                         "virtualAddresses": [
-                              "10.0.2.10"
+                              "{{ virtual_ip }}"
                         ],
                         "pool": "web_pool",
                         "persistenceMethods": [{
@@ -45,7 +45,7 @@
                         "members": [{
                         "servicePort": 80,
                         "serverAddresses": [
-                              "10.1.20.115"
+                              "{{ pool_mem_1 }}"
                         ]
                         }]
                      },
