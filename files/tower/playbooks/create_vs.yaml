@@ -1,6 +1,6 @@
 ---
 - name: Create VS
-  hosts: bigip
+  hosts: 10.1.1.6
   gather_facts: false
   connection: local
     
