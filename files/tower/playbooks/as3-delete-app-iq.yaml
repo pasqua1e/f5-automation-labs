@@ -20,5 +20,5 @@
        headers:
           X-F5-Auth-Token: "{{ f5_token }}"
        validate_certs: no
-       body: "{{ lookup('template', '../j2/tenant_base_iq.j2') }}"
+       body: "{{ lookup('template', '../j2/delete_app_iq.j2') }}"
        body_format: json
