@@ -9,9 +9,7 @@
                 "{{virtual_ip}}"
             ],
             "pool": "web_pool",
-            "profileAnalytics": {
-              "use": "/pasq/statsProfile"
-            },
+            "profileAnalytics": "statsProfile"
         },
         "web_pool": {
             "class": "Pool",
