@@ -17,6 +17,8 @@
     uri:
        url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
        method: "{{ uri_method }}"
+       headers:
+          X-F5-Auth-Token: "eyJraWQiOiJmNzdhMTIxNi1hZGEwLTQ5OWMtYWEwNi1lZGViZjAxYWM0ZmQiLCJhbGciOiJSUzM4NCJ9.eyJpc3MiOiJCSUctSVEiLCJqdGkiOiI5QUo1UldOcnpnaDZBM1FzcHpZdlVRIiwic3ViIjoiYWRtaW4iLCJhdWQiOiIxMC4xLjEuNCIsImlhdCI6MTU1MjE4NDg2NywiZXhwIjoxNTUyMTg1MTY3LCJ1c2VyTmFtZSI6ImFkbWluIiwiYXV0aFByb3ZpZGVyTmFtZSI6ImxvY2FsIiwidXNlciI6Imh0dHBzOi8vbG9jYWxob3N0L21nbXQvc2hhcmVkL2F1dGh6L3VzZXJzL2FkbWluIiwidHlwZSI6IkFDQ0VTUyIsInRpbWVvdXQiOjMwMCwiZ3JvdXBSZWZlcmVuY2VzIjpbXX0.e5qRZFDwJaIU5UzaZOwu1pl4SS0hQKvIfONxyAS7WraNWlfaXrCi49cGZ-W2Sa9_adBA2OHs7XEmP2xOeSgeKDXFWMzion9HQFr781JfbcjeL39-CNzTxbfUlAzqHvXvZ-pxoZahLM38YXV1JH3EzfcjZEkTw__FPV7OvirKafEzfhj8Q_8h3rsBQSl6XwmqPkgKZTQ9Br3gwDncRsolLzThG8XwAjZJC0PH17C0m7PwReRFF3uLB1JhPhGnsRThN2z4Ks7JCucc4jNnBOT2ZsyVA1uZQn2Gf7wXzcHqRv5klYfbEU8ZEata7rb7xMVvewmJS6zc21DujifvyQFd2nUl7jkT_8YtvpqeuufyJj7-vZWPHibHEZhCZjgfmZ12exp2A1hYuQSVX63DcfielL9YoRT2ah-wIa_CGRXHc3L-d5nQn6Vp8NwF-J80y3B8C4Shctj-Hr-ajs6M1KPfkQ7Mv0XXSn3IZPuxG9eYykoRYJCrmeqBCNY6Kuve56Nz"
        user: "admin"
        password: "admin"
        validate_certs: no
