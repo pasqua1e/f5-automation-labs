@@ -17,8 +17,8 @@
     uri:
        url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
        method: "{{ uri_method }}"
-       user: "{{ pasq_user }}"
-       password: "{{ pasq_password }}"
+       user: "admin"
+       password: "admin"
        validate_certs: no
        body: "{{ lookup('template', '../j2/tenant_base_iq.j2') }}"
        body_format: json
