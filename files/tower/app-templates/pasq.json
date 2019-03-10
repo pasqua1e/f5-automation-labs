@@ -8,9 +8,7 @@
             "virtualAddresses": [
                 "{{virtual_ip}}"
             ],
-            "pool": "web_pool",
-            "profileHTTP": "http",
-            "profileAnalytics": "statsProfile"
+            "pool": "web_pool"
         },
         "web_pool": {
             "class": "Pool",
