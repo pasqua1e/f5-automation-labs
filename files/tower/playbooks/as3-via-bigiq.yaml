@@ -15,7 +15,7 @@
     ### AS3 POST ###
   - name: URI POST Tenant
     uri:
-       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare"
+       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
        method: "{{ uri_method }}"
        headers:
           X-F5-Auth-Token: "eyJraWQiOiJmNzdhMTIxNi1hZGEwLTQ5OWMtYWEwNi1lZGViZjAxYWM0ZmQiLCJhbGciOiJSUzM4NCJ9.eyJpc3MiOiJCSUctSVEiLCJqdGkiOiJlVkJOcXpQS0NWd0RoUTVmWDdBYk1RIiwic3ViIjoiYWRtaW4iLCJhdWQiOiIxMC4xLjEuNCIsImlhdCI6MTU1MjIyMjIwMCwiZXhwIjoxNTUyMjIyNTAwLCJ1c2VyTmFtZSI6ImFkbWluIiwiYXV0aFByb3ZpZGVyTmFtZSI6ImxvY2FsIiwidXNlciI6Imh0dHBzOi8vbG9jYWxob3N0L21nbXQvc2hhcmVkL2F1dGh6L3VzZXJzL2FkbWluIiwidHlwZSI6IkFDQ0VTUyIsInRpbWVvdXQiOjMwMCwiZ3JvdXBSZWZlcmVuY2VzIjpbXX0.U7Ob1gStXOTfTkAIsarx4oX8qg5vTOJOYy_iIG3bARNapcOlHzoRwr8OJhNsAKGmQvfoiAgbnOHoO2TGujaUNwv9Xtcc9fMSejm3yPoZ-dpVjyba_6A_KOVCQUQeK7T3QDx7XxegcuXKBw9ikMr-VksFKM9915bzTpOtAPfaKjUOK68IfPrupp86a0hCwjAcSxMyBVUiOmL2KHz0Y5HA0JGj1jmaor1UN66QTN_hZnV0Aoa1Ify9jV0_Z8Q1LVroSYvJGxkmrM-CVMrW8OcdXMqOw6G5s8e-z0VWgGtfC1Uh4erTO2Z4vqhwH-ePGjgTxCQJPVS8JkGAne465QSCyrxOmP91-plZ0o-YjssTI8-_kjBxmEfyLCKInLlc533NyLR2BrQ0Z-pvFsi3dKmms_Y1TvIz1j1VVRIYWZ2kbapPOoI41YlsrTcpM6kzzFXSxsBTTXqpAktGT7UYfUflEL_IQGUa-5oi774XoV4eFIZFL9tThzWTRFJ8oOl-7bJP"
