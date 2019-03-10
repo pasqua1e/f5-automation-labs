@@ -1,1 +1,52 @@
-
+ {
+    "class": "Tenant",
+    "Ansible_____App_7a": {
+        "class": "Application",
+        "template": "http",
+        "serviceMain": {
+            "class": "Service_HTTP",
+            "virtualAddresses": [
+                "{{virtual_ip}}"
+            ],
+            "pool": "web_pool"
+        },
+        "web_pool": {
+            "class": "Pool",
+            "monitors": [
+                "http"
+            ],
+            "members": [{
+                "servicePort": 80,
+                "serverAddresses": [
+                    "{{ pool_mem_1 }}",
+                    "{{ pool_mem_2 }}"
+                ]
+            }]
+        },
+        "statsProfile": {
+          "collectClientSideStatistics": true,
+          "capturedTrafficExternalLogging": false,
+          "collectPageLoadTime": true,
+          "collectedStatsExternalLogging": false,
+          "collectedStatsInternalLogging": true,
+          "sessionCookieSecurity": "ssl-only",
+          "capturedTrafficInternalLogging": true,
+          "class": "Analytics_Profile",
+          "collectResponseCode": true,
+          "notificationBySyslog": false,
+          "notificationBySnmp": false,
+          "notificationByEmail": false,
+          "publishIruleStatistics": false,
+          "collectMaxTpsAndThroughput": false,
+          "collectUserSession": false,
+          "collectUrl": false,
+          "collectGeo": false,
+          "collectIp": false,
+          "collectSubnet": false,
+          "collectUserAgent": false,
+          "collectMethod": true,
+          "collectOsAndBrowser": true,
+          "sessionTimeoutMinutes": 5
+        }
+    }
+}
