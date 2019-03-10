@@ -1,0 +1,24 @@
+---
+- name: Delete App
+  hosts: all
+  gather_facts: false
+  connection: local
+    
+  vars:
+    uri_method: "POST"
+
+  tasks:
+  
+  - set_fact:
+     tenant_body: "{{ lookup('file', '../app-templates/{{ f5_template }}.json', split_lines=False) }}"
+   
+    ### AS3 POST ###
+  - name: URI POST Tenant
+    uri:
+       url: "https://{{ inventory_hostname }}/mgmt/shared/appsvcs/declare?async=true"
+       method: "{{ uri_method }}"
+       headers:
+          X-F5-Auth-Token: "{{ f5_token }}"
+       validate_certs: no
+       body: "{{ lookup('template', '../j2/tenant_base_iq.j2') }}"
+       body_format: json
