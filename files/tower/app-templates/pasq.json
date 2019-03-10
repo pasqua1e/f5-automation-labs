@@ -9,6 +9,7 @@
                 "{{virtual_ip}}"
             ],
             "pool": "web_pool",
+            "profileHTTP": "http",
             "profileAnalytics": "statsProfile"
         },
         "web_pool": {
