@@ -8,7 +8,10 @@
             "virtualAddresses": [
                 "{{virtual_ip}}"
             ],
-            "pool": "web_pool"
+            "pool": "web_pool",
+            "profileAnalytics": {
+              "use": "/pasq/statsProfile"
+            },
         },
         "web_pool": {
             "class": "Pool",
